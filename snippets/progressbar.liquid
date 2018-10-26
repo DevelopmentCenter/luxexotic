@@ -1,0 +1,166 @@
+
+			<br>
+			<div id="progress_bar" class="items-count">
+			</div>
+{% if settings.progressbar_enable %}
+	{% for tag in product.tags %}
+    	{% if tag contains 'progressbar' %}
+		{% endif %}
+	{% endfor %}
+{% endif %}
+<style media="screen">
+  .progressbar.progressbar {
+    background: #ddd;
+    border: 0px solid whitesmoke;
+    height: 11px;
+  }
+  .progressbar.progressbar div {
+    background: red;
+    height: 11px;
+  }
+  .progressbar.progressbar.active div {
+    -webkit-animation: 2s linear 0s normal none infinite running progress-bar-stripes;
+    animation: 2s linear 0s normal none infinite running progress-bar-stripes;
+  }
+  .progress-striped.progressbar.progressbar div {
+    background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
+    background-size: 40px 40px;
+  }
+  .items-count {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  .count {
+    color: red
+    padding: 1px;
+    font-size: 16px;
+  }
+  .items-count p {
+    padding-bottom: 5px;
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+  }
+  .progressbar {
+    position: relative;
+    display: block;
+    background-color: #ca0000;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+  }
+  .progressbar > div {
+    background-color: #ca0000;
+    width: 0;
+    margin-bottom: 0;
+    height: 15px;
+  }
+  .progressbar > div.less-than-ten {
+    background-color: #ca0000 !important;
+  }
+  div#progress_bar > .progressbar {
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  div#progress_bar > p {
+    text-align: left;
+    font-size: 12px;
+    font-weight: 300;
+    text-transform: none;
+    font-family: "Source Sans Pro",sans-serif;
+    color: #000;
+  }
+  div#progress_bar > p > span {
+    font-size: inherit;
+  }
+</style>
+<script type="text/javascript">
+  function randomIntFromInterval(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+  var total_items = 50;
+  var d = new Date();
+  var min_items_left = 12;
+  var max_items_left = 20;
+  var remaining_items = randomIntFromInterval(min_items_left, max_items_left);
+  var min_of_remaining_items = 1;
+  var decrease_after = 1.7; 
+  var decrease_after_first_item = 0.17; 
+  (function($) {
+    $.fn.progressbar = function() {
+      var progress_bar_html = "<p>{{ settings.progress_bar_first_part }} <span class='count'>" + remaining_items + "</span> {{ settings.progress_bar_second_part }}</p>" + "<div class='progressbar'><div style='width:100%'></div></div>";
+      this.addClass('items-count');
+      this.html(progress_bar_html + this.html());
+      updateMeter(this);
+      var ths = this;
+      setTimeout(function() {
+        remaining_items--;
+        if (remaining_items < min_of_remaining_items) {
+          remaining_items = randomIntFromInterval(min_items_left, max_items_left);
+        }
+        $('.count').css('background-color', '#ddd');
+        $('.count').css('color', '#fff');
+        setTimeout(function() {
+          $('.count').css('background-color', '#fff');
+          $('.count').css('color', 'red');
+        }, 1000 * 60 * 0.03);
+        ths.find(".count").text(remaining_items);
+        updateMeter(ths);
+      }, 1000 * 60 * decrease_after_first_item);
+      setInterval(function() {
+        remaining_items--;
+        if (remaining_items < min_of_remaining_items) {
+          remaining_items = randomIntFromInterval(min_items_left, max_items_left);
+        }
+        $('.count').css('background-color', '#ddd');
+        $('.count').css('color', '#fff');
+        setTimeout(function() {
+          $('.count').css('background-color', '#fff');
+          $('.count').css('color', 'red');
+        }, 1000 * 60 * 0.03);
+        ths.find(".count").text(remaining_items);
+        updateMeter(ths);
+      }, 1000 * 60 * decrease_after);
+    };
+    function updateMeter(ths) {
+      var progress = 100 * remaining_items / total_items;
+      if (remaining_items < 10) {
+        ths.find('.progressbar div:first').addClass('less-than-ten');
+      }
+      ths.find('.progressbar').addClass('active progress-striped');
+      setTimeout(function() {
+        myanimate(ths.find('.progressbar div:first'), progress);
+        ths.find('.progressbar').removeClass('active progress-striped');
+      }, 1000);
+    }
+  }(jQuery));
+  function myanimate(elem, total_width) {
+    var width = 0;
+    var max_width = parseInt(elem.closest('.progressbar').css('width'));
+    var elem_current_width = Math.floor(100 * parseInt(elem.css('width')) / max_width);
+    if (elem_current_width > total_width) {
+      width = elem_current_width;
+    }
+    
+    
+    function frame() {
+      if (elem_current_width > total_width) {
+        width--; 
+      } else {
+        width++; 
+      }
+      
+      elem.css('width', width + '%'); 
+      if (width == total_width || width <= 0 || width >= 100) 
+        clearInterval(id);
+    }
+    var id = setInterval(frame, 40); 
+  }
+  jQuery(document).ready(function($) {
+    jQuery("#progress_bar").progressbar();
+  });
+</script>
+

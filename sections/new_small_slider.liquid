@@ -1,0 +1,67 @@
+{% schema %}
+  {
+    "name": "Home Small Slider",
+    "settings": [],
+	"presets": [{
+      "name": "Home Small Slider",
+      "category": "Slideshow"
+    }],
+	"blocks": [
+      {
+      "type": "Slide",
+	   "name": "Slide",
+		"settings": [
+		  {
+			"type": "image_picker",
+			"id": "home_slide_image",
+			"label": "Slide Image"
+		   },
+		   {
+			"type": "text",
+			"id": "product_url",
+			"label": "Product Url"
+		   }
+		]
+      }	
+	]	
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+
+<div data-section-id="{{ section.id }}" data-section-type="slideshow-section">
+  <div class="wrapper">
+    <div class="grid">
+      <div class="grid__item">
+        <div id="home_small_slider">
+        {% for block in section.blocks %}
+          <div class="slide_list">
+            <a href="{{ block.settings.product_url }}">
+            	<img src="{{ block.settings.home_slide_image | img_url: 'master' }}">
+            </a>
+          </div>
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% javascript %}
+
+$('#home_small_slider').slick({
+  dots: true,
+  speed: 300,
+  arrows: true,
+  autoplay: true,
+  slidesToShow: 1,
+  autoplaySpeed: 2000,
+  asNavFor: '.slide_list'
+});
+
+
+{% endjavascript %}

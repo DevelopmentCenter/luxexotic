@@ -1,0 +1,207 @@
+{%- comment -%}
+  The HTML of this shop is minified by Plug in Speed.
+  You can edit your file as normal inside the "capture minified" tags.
+  You can disable HTML minification through your entire shop by changing
+	useMinification to false in the file snippets/pluginspeed-minify-html.liquid
+{%- endcomment -%}
+{%- capture non_minified_html -%}
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
+
+  <!-- Basic page needs ================================================== -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  {% if settings.favicon %}
+    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png" />
+  {% endif %}
+
+  <!-- Title and description ================================================== -->
+  <title>
+  {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
+
+  {% if page_description %}
+  <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  <!-- Helpers ================================================== -->
+  {% include 'social-meta-tags' %}
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="theme-color" content="{{ settings.color_primary }}">
+
+  <!-- CSS ================================================== -->
+  <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+  {{ 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' | stylesheet_tag }}
+  {% comment pluginspeed replaced-css DON'T CHANGE %}{{ 'timber.scss.css' | asset_url | stylesheet_tag }}{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'timber.scss.css', tag: 'stylesheet', liquid_tag: true -%}
+  {% comment pluginspeed replaced-css DON'T CHANGE %}{{ 'theme.scss.css' | asset_url | stylesheet_tag }}{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'theme.scss.css', tag: 'stylesheet', liquid_tag: true -%}
+  {% comment pluginspeed replaced-css DON'T CHANGE %}{{ 'cusstom.css' | asset_url | stylesheet_tag }}{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'cusstom.css', tag: 'stylesheet', liquid_tag: true -%}
+  {% include 'google-fonts' %}
+
+  <!-- Sections ================================================== -->
+  <script src="https://use.fontawesome.com/7ed9d54606.js"></script>
+  <script>
+    window.theme=window.theme||{};theme.strings={zoomClose:{{"products.zoom.close"|t|json}},zoomPrev:{{"products.zoom.prev"|t|json}},zoomNext:{{"products.zoom.next"|t|json}},moneyFormat:{{shop.money_format|json}}};theme.settings={cartType:{{settings.cart_type|json}},gridType:{{settings.collection_products_grid|json}}}
+  </script>
+
+  <!--[if (gt IE 9)|!(IE)]><!-->{% comment pluginspeed replaced-js DON'T CHANGE %}<script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'theme.js', tag: 'script' -%} <script src="{%- include 'pluginspeed-asset-url', asset: 'theme.js' -%}" defer="defer"></script><!--<![endif]-->
+  <!--[if lte IE 9]>{% comment pluginspeed replaced-js DON'T CHANGE %}<script src="{{ 'theme.js' | asset_url }}"></script>{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'theme.js', tag: 'script' -%} <script src="{%- include 'pluginspeed-asset-url', asset: 'theme.js' -%}"></script><![endif]-->
+
+  <!-- Header hook for plugins ================================================== -->
+  {{ content_for_header }}
+  {% include 'oldIE-js' %}
+
+  {% comment pluginspeed replaced-inliner DON'T CHANGE %}{{ '//ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js' | script_tag }}{% endcomment %}{% include 'pluginspeed-inlined-jquery.min.js' %}
+  {% comment pluginspeed replaced-js DON'T CHANGE %}{{ 'modernizr.min.js' | asset_url | script_tag }}{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'modernizr.min.js', tag: 'script', liquid_tag: true , inline: true -%}
+
+  {% comment %}
+    If you store has customer accounts disabled, you can remove the following JS file
+  {% endcomment %}
+  {% if template.directory == 'customers' %}
+    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+  {% endif %}
+
+
+	{{ shop.metafields.loox["global_html_head"] }}
+{% include "trackify" %}
+
+
+
+<!-- BeginShopPopAddon -->
+<script>   
+Shopify.shopPopSettings = {"proof_enabled":false,"proof_show_add_to_cart":true,"proof_mobile_enabled":true,"proof_mobile_position":"Bottom","proof_desktop_position":"Bottom Left","proof_show_on_product_page":true,"proof_hide_notification_after":30,"proof_display_time":6,"proof_interval_time":5,"proof_order_random":false,"proof_fetch_count":30,"proof_cycle":true,"proof_anonymize":true,"proof_anonymize_text":null,"proof_hours_before_obscure":48,"proof_sequential":true,"proof_top":20,"proof_left":10,"proof_right":10,"proof_bottom":20,"proof_background_color":"#FFFFFF","proof_font_color":"#000000","proof_custom_css":null,"proof_border_radius":1,"proof_first_interval_time":1,"proof_locale":"es"};
+</script>
+<!-- EndShopPopAddon -->
+
+{% include 'weglot_hreftags' %}
+{% include 'weglot_switcher' %}
+
+<!-- ROIHunterEasy HeadSnippet start -->{% include 'roi_hunter_easy_head_snippet' %}<!-- ROIHunterEasy HeadSnippet end -->
+</head>
+
+{% comment %}
+  Add the page template as a class for easy page or template specific styling.
+{% endcomment %}
+<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}">
+
+  <!-- ROIHunterEasy BodySection start -->{% comment pluginspeed replaced-js DON'T CHANGE %}{{ 'roi_hunter_easy_body_section.js' | asset_url | script_tag }}{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'roi_hunter_easy_body_section.js', tag: 'script', liquid_tag: true -%}<!-- ROIHunterEasy BodySection end -->
+	
+  <div id="NavDrawer" class="drawer drawer--left">
+    {% section 'drawer-menu' %}
+  </div>
+  <div id="CartDrawer" class="drawer drawer--right drawer--has-fixed-footer">
+    <div class="drawer__fixed-header">
+      <div class="drawer__header">
+        <div class="drawer__close">
+          <button type="button" class="icon-fallback-text drawer__close-button js-drawer-close">
+            <i class="fa fa-angle-left"></i>
+            <span class="fallback-text">{{ 'cart.general.close_cart' | t }}</span>
+          </button>
+        </div>
+        <div class="drawer__title">{{ 'cart.general.title' | t }}</div>
+        
+      </div>
+    </div>
+    <div class="drawer__inner">
+      <div id="CartContainer" class="drawer__cart"></div>
+    </div>
+  </div>
+
+  <div id="PageContainer" class="page-container">
+
+    {% section 'header' %}
+
+    {% if template.name == "index" %}
+      {% section 'slideshow' %}
+    {% endif %}
+
+    <main class="main-content" role="main">
+      {% unless template.name == "index" or template == "collection.image" %}
+        <div class="wrapper">
+      {% endunless %}
+        {{ content_for_layout }}
+      {% unless template.name == "index" or template == "collection.image" %}
+        </div>
+      {% endunless %}
+    </main>
+    
+    
+    {% section 'footer' %}
+
+  </div>
+
+  {% comment %}
+    Template-specific js
+  {% endcomment %}
+  <script>
+    {% if resetPassword %}
+      $(function(){timber.resetPasswordSuccess();});
+    {% endif %}
+  </script>
+
+  {% comment %}
+    Ajaxify your cart with this plugin.
+    Documentation:
+      - http://shopify.com/timber#ajax-cart
+  {% endcomment %}
+  {% if settings.cart_type == 'drawer' %}
+    {% include 'ajax-cart-template' %}
+  {% endif %}
+
+  <div id="SearchModal" class="mfp-hide">
+    {% include 'search-bar', search_btn_style: 'btn', search_bar_location: 'search-bar--modal' %}
+  </div>
+
+{% comment %} <script src="//www.codeblackbelt.com/js/modules/frequently-bought-together/main.min.js?shop=freeofferscom.myshopify.com"></script> {% endcomment %}
+
+{% comment %} <script>var om57c62a5576345,om57c62a5576345_poll=function(){var r=0;return function(n,l){clearInterval(r),r=setInterval(n,l)}}();!function(e,t,n){if(e.getElementById(n)){om57c62a5576345_poll(function(){if(window['om_loaded']){if(!om57c62a5576345){om57c62a5576345=new OptinMonsterApp();return om57c62a5576345.init({"s":"11958.57c62a5576345","staging":0,"dev":0,"beta":0});}}},25);return;}var d=false,o=e.createElement(t);o.id=n,o.src="//a.optnmstr.com/app/js/api.min.js",o.async=true,o.onload=o.onreadystatechange=function(){if(!d){if(!this.readyState||this.readyState==="loaded"||this.readyState==="complete"){try{d=om_loaded=true;om57c62a5576345=new OptinMonsterApp();om57c62a5576345.init({"s":"11958.57c62a5576345","staging":0,"dev":0,"beta":0});o.onload=o.onreadystatechange=null;}catch(t){}}}};(document.getElementsByTagName("head")[0]||document.documentElement).appendChild(o)}(document,"script","omapi-script");</script> {% endcomment %}
+
+
+
+
+
+<script type="text/javascript">
+var _learnq=_learnq||[];_learnq.push(['account','tWYWUb']);(function(){var b=document.createElement('script');b.type='text/javascript';b.async=!0;b.src=('https:'==document.location.protocol?'https://':'http://')+'a.klaviyo.com/media/js/analytics/analytics.js';var a=document.getElementsByTagName('script')[0];a.parentNode.insertBefore(b,a)})()
+</script>
+
+	{{ shop.metafields.loox["global_html_body"] }}
+
+
+<pixel-hook style="display:none;">
+     {% if template == 'collection' %}
+   <page-collection-id>
+    {% for collection in collections %}{{ collection.id  }},{% endfor %}
+    </page-collection-id>
+    {% endif %}
+      {% if template == 'product' %}
+   <product-collection>{% for collection in product.collections %}{{ collection.id  }},{% endfor %}</product-collection>
+      {% endif %}
+        {% if template == 'cart' %}
+         <product-tags>{% for item in cart.items %}{% for tag in item.product.tags %}{{ tag }}, {% endfor %}{% endfor %}</product-tags>
+            <product-collection>{% for item in cart.items %}{% for collection in item.product.collections %}{{ collection.id }}, {% endfor %}{% endfor %}</product-collection>
+  
+    {% endif %}
+  </pixel-hook>
+{% include 'upsellapp-theme' %}<!-- BEEKETINGSCRIPT CODE START -->{% include 'bk-tracking' %}<!-- BEEKETINGSCRIPT CODE END -->
+
+
+
+</body>
+
+
+</html>
+{%- endcapture non_minified_html -%}
+{%- assign minifier = 'pluginspeed-minify-html' -%}
+{%- capture minifier_output -%}{%- include minifier, minified: non_minified_html -%}{%- endcapture -%}
+{%- assign error_message = 'Liquid error: Could not find asset snippets/' | append: minifier -%}
+{%- if minifier_output contains error_message -%}
+ {{ non_minified_html }}
+{%- else -%}
+  {{ minifier_output }}
+{%- endif -%}

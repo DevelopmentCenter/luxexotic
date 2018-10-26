@@ -1,0 +1,56 @@
+{% comment pluginspeed replaced-css DON'T CHANGE %}{{ 'notify.scss.css' | asset_url | stylesheet_tag}}{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'notify.scss.css', tag: 'stylesheet', liquid_tag: true -%} 
+<div  class="customized fade-in fade-out" id="someone-purchased">
+  {% if section.settings.notify_collection == blank  %} 
+  {% assign  notifycollection = collections.all.products  %}
+  {% else %}
+  {% assign  notifycollection = collections[section.settings.notify_collection].products  %}
+  {% endif %} 
+  {% for prod in notifycollection  limit:collections.all.products.length %}
+  <div style="display: none;"> 
+    <img image-data-src="{{ prod.featured_image | product_img_url: '85x85' }}"  alt="{{ product.featured_image.alt }}" />
+    <p><span class="people"></span> from <span class="country"></span> purchased a <a href="{{ prod.url }}">{{ prod.title }}</a>
+      <small class="timeAgo">1 hours ago</small>
+    </p>
+  </div>
+  {% endfor %}
+</div>
+<script>
+      $(function(){$('#someone-purchased').show();var mytimeAgo=[{{section.settings.time_list}}];var people=[{{section.settings.customer_name}}];var country=[{{section.settings.country_list}}];var randomlytimeAgo=Math.floor(Math.random()*mytimeAgo.length);var randomlytimeAgo1=Math.floor(Math.random()*people.length);var randomlytimeAgo2=Math.floor(Math.random()*country.length);var currentmytimeAgo=mytimeAgo[randomlytimeAgo];var currentpeople=people[randomlytimeAgo1];var currentcountry=country[randomlytimeAgo2];$(".timeAgo").text(currentmytimeAgo+" ago");$(".people").text(currentpeople);$(".country").text(currentcountry);$("#someone-purchased > div:gt(0)").hide();setInterval(function(){$('#someone-purchased > div:first').fadeOut(500).next().fadeIn(0).end().appendTo('#someone-purchased');var mytimeAgo=[{{section.settings.time_list}}];var people=[{{section.settings.customer_name}}];var country=[{{section.settings.country_list}}];var randomlytimeAgo=Math.floor(Math.random()*mytimeAgo.length);var randomlytimeAgo1=Math.floor(Math.random()*people.length);var randomlytimeAgo2=Math.floor(Math.random()*country.length);var currentmytimeAgo=mytimeAgo[randomlytimeAgo];var currentpeople=people[randomlytimeAgo1];var currentcountry=country[randomlytimeAgo2];$(".timeAgo").text(currentmytimeAgo+" ago");$(".people").text(currentpeople);$(".country").text(currentcountry)},20000);setInterval(function(){[].forEach.call(document.querySelectorAll('img[image-data-src]'),function(img){img.setAttribute('src',img.getAttribute('image-data-src'));img.onload=function(){img.removeAttribute('image-data-src')}});$('#someone-purchased').fadeIn(function(){$(this).removeClass("fade-out")}).delay(5000).fadeIn(function(){$(this).addClass("fade-out")}).delay(2000)},15000)})
+</script>
+
+
+{% schema %}
+  {
+    "name": "People Bought - Popup",
+    "settings": [
+      {
+        "id": "customer_name",
+        "label": "Customer List",
+        "type": "textarea",
+        "info": "write customer name for example: 'Roy','Andy','Rock'"
+      },
+      {
+        "id": "country_list",
+        "label": "Country List",
+        "type": "textarea",
+        "info": "write Country name for example: 'USA','INDIA','CANADA'"
+      },
+      {
+        "id": "time_list",
+        "label": "Time List",
+        "type": "textarea",
+        "info": "write Country name for example: '0 minute', '1 minute', '5 minutes'"
+      },
+      {
+        "id": "notify_collection",
+        "label": "Select collection",
+        "type": "collection"
+      }
+    ],
+    "presets": [{
+      "name": "Popup",
+      "category": "Promotional"
+    }],
+    "blocks" : []
+  }
+{% endschema %}

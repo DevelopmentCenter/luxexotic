@@ -1,0 +1,43 @@
+{% schema %}
+  {
+    "name": "testimonial",
+    "settings": [
+		{
+			"type": "textarea",
+			"id": "testimonial_text",
+			"label": "Testimonial text"
+		}
+
+	],
+	"presets": [{
+      "name": "testimonial",
+      "category": "text"
+    }]
+  }
+{% endschema %}
+
+{% stylesheet %}
+
+.special_words.text-center {
+    margin: 50px 0;
+}
+.special_words h4 {
+    font-size: 25px;
+    font-family: 'Oswald', sans-serif;
+    line-height: 40px;
+}
+
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+<div class="special_words text-center">
+  <div class="">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+    	<h4>{{ section.settings.testimonial_text }}</h4>
+      </div>
+    </div>
+  </div>
+</div>

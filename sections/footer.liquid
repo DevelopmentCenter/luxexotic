@@ -1,0 +1,191 @@
+<footer id="main_foot">
+  <section class="clearfix top_ft" id="footer_middle">	
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+            <div align="center" class="product-reasons logo-ones" style="margin-top: 0;">
+              <h3>4 buenas razones para comprar con nosotros:</h3>
+              <div class="row clearfix">
+                <div class="col-md-4 col-xs-4 secured_block">
+					<img alt="" src="{{ 'Satisfacion_100_garantizada.png' | asset_url }}">
+    				<p>Satisfaccion 100% Garantizada</p>
+				</div>
+                <div class="col-md-4 col-xs-4 secured_block">
+					<img alt="" src="{{ 'Orden_Asegurada.png' | asset_url }}">
+    				<p>Orden asegurada</p>
+				</div>
+                <div class="col-md-4 col-xs-4 secured_block">
+					<img alt="" src="{{ 'Easy_Returns.png' | asset_url }}">
+    				<p>Retornos Faciles</p>
+				</div>
+                
+              </div>
+              {%comment%}
+              <ul class="secure clearfix"> 
+                <li><img alt="" src="https://image.ibb.co/j00ojU/Untitled_1_00d03_Hue_Saturation_1_copy_2.png"><br>Satisfacion 100%
+
+					<br />Garantizada</li>
+                <li><img alt="" src="https://image.ibb.co/gos14U/Untitled_1_0002_Hue_Saturation_1_copy.png"><br>Orden asegurada</li>
+                <li><img alt="" src="https://image.ibb.co/c2YVyp/logo_1.png"><br>Retornos Faciles</li>
+                </ul>
+              {%endcomment%}
+            </div>
+        </div>
+        <div class="col-md-5 col-md-offset-1 col-sm-6 secured_payment_col">
+          <h3>Pago seguro</h3>
+          <p>Usamos seguridad SSL cifrada para garantizar que la información de su tarjeta de crédito esté 100% protegida.</p>
+          <p class="credit-cards">
+          </p>
+          <div class="checkout-images">         
+            <img class="checkout-image" src="{{ 'final_count.png' | asset_url  }}">            
+          </div>         
+        </div>
+      </div>	
+    </div>
+  </section>
+  <div class="footer-seperator">&nbsp;</div>
+  <section id="footer_bottom" class="clearfix">
+    <div class="container">
+      <div class="row">
+                 <div class="col-md-4 block-footer">          
+          <div class="desktopd"> 
+            <h4>SÍGUENOS EN LA REDES SOCIALES</h4>              
+<ul class="social social-media">
+    <li class="facebook">
+    <a href="{{ section.settings.facebook_link }}" title="canvascultures on Facebook"><i class="fa fa-facebook" aria-hidden="true"></i><span>Facebook</span></a>
+    </li> 
+    <li class="facebook">
+    <a href="{{ section.settings.insta_link }}" title="canvascultures on Facebook"><i class="fa fa-instagram" aria-hidden="true"></i><span>Instagram</span></a>
+    </li> 
+</ul>  
+          </div>  
+              
+                   <div class="footer-translate"><div class="panda_translate_element"></div></div>    
+                   
+        </div>  
+        
+        
+        <div class="col-md-4 menu-footer  block-footer">
+
+
+          <ul class="foot">  
+          {% for link in linklists[section.settings.footer_link_list].links %}
+                {% assign child_list_handle = link.title | handleize %}
+                {% if linklists[child_list_handle].links != blank %}
+                  <li class="site-nav__item site-nav__expanded-item site-nav--has-dropdown{% unless template.name == 'index' %}{% if link.active %} site-nav--active{% endif %}{% endunless%}" aria-haspopup="true">
+                    <a href="{{ link.url }}" class="site-nav__link">
+                      {{ link.title }}
+                      <span class="icon icon-arrow-down" aria-hidden="true"></span>
+                    </a>
+                    <ul class="site-nav__dropdown text-left">
+                      {% for childlink in linklists[child_list_handle].links %}
+                        <li{% if childlink.active %} class="site-nav--active"{% endif %}>
+                          <a href="{{ childlink.url }}" class="site-nav__dropdown-link">{{ childlink.title | escape }}</a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </li>
+                {% else %}
+                  <li class="site-nav__item site-nav__expanded-item{% unless template.name == 'index' %}{% if link.active %} site-nav--active{% endif %}{% endunless%}">
+                    <a href="{{ link.url }}" class="">{{ link.title }}</a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+              </ul>
+          <div class="search-form">
+            <form action="/search" role="search" class="navbar-form">
+              <div class="input-group">
+                <input type="hidden" value="product" name="type">
+                <input style="height: 42px; color: #000;" type="text" value="" name="q" placeholder="Search" class="form-control" kl_virtual_keyboard_secure_input="on">
+                <div class="input-group-btn">
+                  <button type="submit" class="btn btn-default footer_search_btn"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>               
+        <div class="col-md-4  block-footer">
+          <div class="header-call-text">
+              <span class="phone-icon">¿Tienes una pregunta? Llama o envíanos un correo electrónico</span><br>
+              {% if settings.store_support_phone != "" %}
+              <span class="phone-icon"><icon class="glyphicon glyphicon-earphone"></icon></span>   
+            <a class="phonehref" href="tel:{{ settings.store_support_phone }}"> <span class="phone-text">&nbsp;{{ settings.store_support_phone }}</span></a><br>
+            <script>
+              var numdashed = "{{ settings.store_support_phone }}";
+              var stripNumber = numdashed.replace(/[- )(]/g,'');
+              $(".phonehref").attr("href", "tel:" + stripNumber);
+              </script>
+              {% endif %}
+               {% if settings.store_support_email != "" %}
+             <span class="phone-icon"><icon class="glyphicon glyphicon-envelope"></icon></span>
+            <a href="mailto:{{ settings.store_support_email }}"> <span class="phone-number">&nbsp;{{ settings.store_support_email }}</span></a><br>
+                     {% endif %}
+                      </div>
+          <br>
+          
+          
+          <div class="cta-popup">
+                       	{{ section.settings.footer_newsletter_subtitle }}
+                        
+            {% form 'customer' %}
+              {{ form.errors | default_errors }}
+      {% if form.posted_successfully? %}
+        <div class="newsletter--form">
+          <div class="note form-success">{{ 'general.newsletter_form.newsletter_confirmation' | t }}</div>
+        </div>
+      {% else %}
+              
+              <input class="newsletter_txt" name="contact[email]" type="email" placeholder="Email address" value=""> 
+              <button type="submit" class="btn newsletter_btns">Subscribe</button>		
+              {% endif %}
+            {% endform %}
+          </div>
+                  </div>
+      </div>
+    </div> 
+  </section>
+  <div class="footer-seperator">&nbsp;</div>
+  <section class="clearfix bottom_ft" id="footer_middle" style="padding: 10px 0px;">	
+    <div class="container">
+      <div class="row">
+        <p style="text-align:center;font-size:14px;padding:0px;">
+          {{ section.settings.copyright_text }}
+        </p>
+      </div>
+    </div>
+  </section>
+</footer>
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "footer_link_list",
+        "label": "Footer menu",
+        "default": "footer"
+      },
+	  {
+		"type": "textarea",
+		"id": "footer_newsletter_subtitle",
+		"label": "Footer Newslatter Email"
+	  },
+	  {
+		"type": "text",
+		"id": "facebook_link",
+		"label": "Facebook Link"
+	  },
+      {
+		"type": "text",
+		"id": "insta_link",
+		"label": "Insta Link"
+	  },
+	  {
+		"type": "text",
+		"id": "copyright_text",
+		"label": "Copyright Text"
+	  }
+    ]
+  }
+{% endschema %}

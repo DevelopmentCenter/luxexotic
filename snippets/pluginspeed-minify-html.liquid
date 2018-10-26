@@ -1,0 +1,63 @@
+{%- comment -%}
+  ----------------------------------------------------------------------------------
+   Plug in Speed for Shopify
+
+   Copyright (c) 2018 Pemberton Rank Ltd, a company registered in England 7341337
+
+   This file is subject to the license at https://www.pluginspeed.com/eula
+  ----------------------------------------------------------------------------------
+{%- endcomment -%}
+
+{%- comment -%}Copyright (c) 2014 Anatol Broder{%- endcomment -%}
+{%- comment -%}Copyright (c) 2018 Pemberton Rank Ltd{%- endcomment -%}
+
+{%- comment -%}Initialization{%- endcomment -%}
+
+{%- assign _LINE_FEED = "
+" -%}
+
+{%- assign useMinification = true -%}
+
+{%- assign size = minified | size -%}
+{%- unless useMinification and size < 4417664 -%}
+{{ minified }}
+{%- else -%}
+
+{%- capture _content -%}{{ minified }}{%- endcapture -%}
+
+{%- comment -%}Remove blanklines{%- endcomment -%}
+
+{%- assign _content = _content | replace: "
+          ", "
+" | replace: "
+         " , "
+" | replace: "
+        " , "
+" | replace: "
+       " , "
+" | replace: "
+      " , "
+" | replace: "
+     " , "
+" | replace: "
+    " , "
+" | replace: "
+   " , "
+" | replace: "
+  " , "
+" | replace: "
+
+" , "
+" -%}
+
+{%- for i in (1..3) -%}
+{%- assign _content = _content | replace: "
+
+" , "
+" -%}
+{%- endfor -%}
+
+
+{%- comment -%}Output{%- endcomment -%}
+{{ _content }}
+{%- endunless -%}

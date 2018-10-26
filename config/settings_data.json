@@ -1,0 +1,774 @@
+{
+  "current": {
+    "store_support_phone": "1-787-941-0723",
+    "store_support_email": "Info@luxexotic.store",
+    "color_body_bg": "#f3f3f3",
+    "color_body_text": "#1e1e1e",
+    "color_borders": "#d9c9b2",
+    "color_primary": "#85bb65",
+    "color_secondary": "#85bb65",
+    "color_product_background": "#f7f7f7",
+    "color_sale_tag": "#85bb65",
+    "color_input": "#ffffff",
+    "color_newsletter": "#ffffff",
+    "footer_color_text": "#858585",
+    "footer_titles_text_color": "#d7d7d7",
+    "footer_color_background_icons": "#ffffff",
+    "footer_color_top": "#141f1c",
+    "footer_color_middle": "#f3f3f3",
+    "footer_color_bottom": "#191919",
+    "color_drawer_background": "#f6f6f6",
+    "color_drawer_text": "#041f1a",
+    "color_drawer_border": "#d9c9b2",
+    "color_drawer_button": "#85bb65",
+    "color_drawer_button_text": "#ffffff",
+    "type_header_family": "Google_Open+Sans_700_sans",
+    "type_header_base_size": "20px",
+    "type_header_border_thickness": "1px",
+    "type_accent_family": "Google_Open+Sans_700_sans",
+    "type_accent_transform": true,
+    "type_accent_spacing": true,
+    "type_base_family": "Google_Open+Sans_700_sans",
+    "type_base_size": "14px",
+    "type_base_italize_titles": false,
+    "progressbar_enable": false,
+    "progress_bar_first_part": "¡Avanza! Quedan",
+    "progress_bar_second_part": "En Inventario Disponible.",
+    "cart_type": "drawer",
+    "cart_notes_enable": false,
+    "social_facebook_link": "https:\/\/www.facebook.com\/lux.jf",
+    "social_twitter_link": "",
+    "social_pinterest_link": "",
+    "social_instagram_link": "https:\/\/www.instagram.com\/luxexotic.store",
+    "social_snapchat_link": "https:\/\/www.snapchat.com\/add\/luxexotic",
+    "social_google_plus_link": "",
+    "social_tumblr_link": "",
+    "social_youtube_link": "",
+    "social_vimeo_link": "",
+    "social_fancy_link": "",
+    "share_facebook": true,
+    "share_twitter": true,
+    "share_pinterest": true,
+    "favicon": "shopify:\/\/shop_images\/Luxe_180x180-1_6de268a5-809c-4647-9386-62deb79207dc.png",
+    "gtranslate_translation_service": "google",
+    "gtranslate_pageLanguage": "es",
+    "gtranslate_layout": "google.translate.TranslateElement.FloatPosition.TOP_LEFT",
+    "gtranslate_includedLanguages": "en,es",
+    "checkout_header_image": "",
+    "checkout_logo_image": "shopify:\/\/shop_images\/Small_Logo_Gold_copy_63375bb2-a501-4b55-a8a6-42aedc56ecdc.png",
+    "checkout_logo_position": "right",
+    "checkout_logo_size": "large",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#ffffff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#f4f4f4",
+    "checkout_heading_font": "Helvetica Neue",
+    "checkout_body_font": "Helvetica Neue",
+    "checkout_accent_color": "#808080",
+    "checkout_button_color": "#85bb65",
+    "checkout_error_color": "#ff5050",
+    "progress_bar_bg_color": "#e3cccc",
+    "progress_bar_color": "#e84747",
+    "checkout_banner_background_color": "#fff",
+    "checkout_call_to_action_color": "#a26b25",
+    "checkout_use_header_image": false,
+    "collection_products_grid": "collage",
+    "customer_layout": "customer_area",
+    "favicon_enable": false,
+    "product_vendor_enable": false,
+    "social_sharing_style": "clean",
+    "gtranslate_display_mode": "tabbed",
+    "gtranslate_advanced": true,
+    "gtranslate_google_translation_bar": "hidden",
+    "gtranslate_google_translation_overlay": "visible",
+    "gtranslate_custom_css": "",
+    "gtranslate_custom_js": "",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "main_menu_link_list": "main-menu",
+          "logo": "shopify:\/\/shop_images\/Small_Logo_Gold_copy_63375bb2-a501-4b55-a8a6-42aedc56ecdc.png",
+          "logo-inverted": "",
+          "logo_max_width": "300",
+          "search": "modal",
+          "show_announcement": false,
+          "home_page_only": false,
+          "text": "¡DESCUENTO ESPECIAL EN EL CHECKOUT!",
+          "link": "",
+          "color_bg": "#ffffff",
+          "color_text": "#ffffff"
+        }
+      },
+      "slideshow": {
+        "type": "slideshow",
+        "blocks": {
+          "1525798474397": {
+            "type": "slide",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/IMG_0318.jpg",
+              "slide_text_color": "is-light",
+              "slide_subheading": "#NOTEQUEDESSINBRILLO",
+              "slide_heading": "¡VIVE TU PELICULA!",
+              "slide_cta": "Compra Ahora",
+              "slide_link": "shopify:\/\/collections"
+            }
+          }
+        },
+        "block_order": [
+          "1525798474397"
+        ],
+        "settings": {
+          "hero_home_auto": false,
+          "home_hero_auto_speed": "7000"
+        }
+      },
+      "drawer-menu": {
+        "type": "drawer-menu",
+        "settings": {
+          "drawer_top_link_list": "main-menu",
+          "drawer_bottom_link_list": "",
+          "drawer_search_enable": true
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "footer_link_list": "footer",
+          "footer_newsletter_subtitle": "<p>Conviértase en un miembro de <span class=\"store_name\">LuxeXotic<\/span> y lo mantendremos actualizado con los últimos productos y ofertas.<\/p>",
+          "facebook_link": "https:\/\/www.facebook.com\/lux.jf",
+          "insta_link": "https:\/\/www.instagram.com\/luxexotic.store",
+          "copyright_text": "© 2017- 2018 Copyright LUXEXOTIC.STORE. All Rights Reserved."
+        }
+      },
+      "product-template": {
+        "type": "product-template",
+        "settings": {
+          "zoom_enable": false,
+          "social_sharing_products": true,
+          "product_vendor_enable": false,
+          "guarantee_text": "<p>Cuando usted adquiere una prenda a través de nuestra tienda online, está comprando una joya de alta calidad que cuenta con las especificaciones y características que han sido señaladas en la descripción del producto. Nos esmeramos en describir y mostrar, de la forma más detallada y precisa posible, cómo luce cada joya, para que usted pueda tener una clara idea de cómo se verá cuando la tenga en sus manos. Queremos que usted adquiera un artículo que realmente LE SATISFAGA EN TODOS LOS SENTIDOS. Eso significa que usted puede estar seguro de que lo que ofrecemos, es igual a lo que usted está comprando y pagando, y es igual a lo que recibirá en su buzón.\n<\/p> \n            <p> Del mismo modo, así como queremos que usted se sienta completamente satisfecho con los productos que adquiere a través de LuxeXotic.Store, nos preocupa garantizar LA CALIDAD DEL SERVICIO que le ofrecemos a través de estos espacios: queremos brindarle la mejor atención, para que su experiencia de compra sea excepcional; por tal motivo, trabajamos para mejorar en ese aspecto, continuamente; y es que la satisfacción TOTAL de nuestros clientes es, en definitiva, nuestra misión. Por lo tanto, si usted, por cualquier motivo, no se encuentra plenamente satisfecho con el producto adquirido o no ha tenido una experiencia de compra a la altura de sus expectativas, le exhortamos a que se ponga en contacto con nosotros escribiéndonos a este correo Info@luxexotic.store o llamándonos al 1-787-941-0723, en donde gustosamente le atenderemos para resolver cualquier requerimiento de su parte, en todo momento. \n<\/p> \n            <p> Si usted tiene alguna duda, inquietud o sugerencia que hacernos, por favor comuníquese con nosotros. Estamos aquí para servirle, porque queremos ser mucho más que una simple joyería online. Queremos que se enamore de nuestra tienda y de nuestros productos, para que pueda llevar a casa ¡el brillo de las estrellas!\n<\/p>\n<p> Muchísimas gracias por preferir a LuxeXotic.Store <\/p>",
+          "product_button_shake": true
+        }
+      },
+      "list-collections-template": {
+        "type": "list-collections-template",
+        "settings": {
+          "display_type": "all",
+          "sort": "alphabetical"
+        }
+      },
+      "collection-template": {
+        "type": "collection-template",
+        "settings": {
+          "collection_products_grid": "grid",
+          "collection_tags_enable": false,
+          "product_vendor_enable": false
+        }
+      },
+      "1511537467951": {
+        "type": "featured-collections",
+        "blocks": {
+          "1511537467951-0": {
+            "type": "collection",
+            "settings": {
+              "collection": "ofertas-en-sets"
+            }
+          },
+          "1511537467951-1": {
+            "type": "collection",
+            "settings": {
+              "collection": "mas-vendidos"
+            }
+          },
+          "1535405018218": {
+            "type": "collection",
+            "settings": {
+              "collection": "cadenas"
+            }
+          },
+          "1522988410110": {
+            "type": "collection",
+            "settings": {
+              "collection": "cubanas"
+            }
+          },
+          "1511564337749": {
+            "type": "collection",
+            "settings": {
+              "collection": "technomarine"
+            }
+          },
+          "1511564151601": {
+            "type": "collection",
+            "settings": {
+              "collection": "pendants-charms"
+            }
+          },
+          "1535405629078": {
+            "type": "collection",
+            "settings": {
+              "collection": "pulseras"
+            }
+          }
+        },
+        "block_order": [
+          "1511537467951-0",
+          "1511537467951-1",
+          "1535405018218",
+          "1522988410110",
+          "1511564337749",
+          "1511564151601",
+          "1535405629078"
+        ],
+        "settings": {
+          "title": "COLECCIONES"
+        }
+      },
+      "1533779975318": {
+        "type": "featured-products",
+        "disabled": true,
+        "settings": {
+          "title": "Featured collection",
+          "home_featured_products": "",
+          "collection_products_grid": "grid"
+        }
+      },
+      "1533780107174": {
+        "type": "loox-all-reviews",
+        "disabled": true,
+        "settings": {
+          "only_photos": true,
+          "data-limit": 15,
+          "maxwidth": 840
+        }
+      },
+      "1533865141035": {
+        "type": "featured-content",
+        "disabled": true,
+        "blocks": {
+          "1533865141035-0": {
+            "type": "text",
+            "settings": {
+              "home_page_richtext": "<p>R E V I E W S<\/p>"
+            }
+          }
+        },
+        "block_order": [
+          "1533865141035-0"
+        ],
+        "settings": {}
+      },
+      "1538512674404": {
+        "type": "featured-row",
+        "disabled": true,
+        "settings": {
+          "image": "shopify:\/\/shop_images\/Small_Logo_Gold_copy_936860ea-909b-4e55-9caa-2768253a5941.png",
+          "layout": "left",
+          "title": "",
+          "text": "",
+          "button_label": "",
+          "button_link": ""
+        }
+      }
+    },
+    "content_for_index": [
+      "1511537467951",
+      "1533779975318",
+      "1533865141035",
+      "1533780107174",
+      "1538512674404"
+    ]
+  },
+  "presets": {
+    "TheMM Red": {
+      "cart_type": "page",
+      "cart_notes_enable": false,
+      "checkout_accent_color": "#a26b25",
+      "checkout_banner_background_color": "#fff",
+      "checkout_button_color": "#000000",
+      "checkout_call_to_action_color": "#a26b25",
+      "checkout_use_header_image": false,
+      "collection_products_grid": "collage",
+      "color_body_bg": "#ffffff",
+      "color_body_text": "#1c1d1d",
+      "color_borders": "#1c1d1d",
+      "color_drawer_background": "#1c1d1d",
+      "color_drawer_border": "#343535",
+      "color_drawer_button": "#9e1919",
+      "color_drawer_button_text": "#ffffff",
+      "color_drawer_text": "#ffffff",
+      "footer_color_top": "#ed0000",
+      "footer_color_middle": "#4c4c4c",
+      "footer_color_bottom": "#ed0000",
+      "color_input": "#f6f6f6",
+      "color_newsletter": "#f6f6f6",
+      "color_primary": "#1c1d1d",
+      "color_product_background": "#f7f7f7",
+      "color_sale_tag": "#990000",
+      "color_secondary": "#a26b25",
+      "customer_layout": "customer_area",
+      "favicon_enable": false,
+      "product_vendor_enable": false,
+      "share_facebook": true,
+      "share_pinterest": true,
+      "share_twitter": true,
+      "social_sharing_style": "clean",
+      "type_accent_family": "Google_Montserrat_400_sans",
+      "type_accent_spacing": true,
+      "type_accent_transform": true,
+      "type_base_family": "Google_Lato_400_sans",
+      "type_base_italize_titles": true,
+      "type_base_size": "16px",
+      "type_header_base_size": "30px",
+      "type_header_border_thickness": "1px",
+      "type_header_family": "'Big Caslon', 'Book Antiqua', 'Palatino Linotype', Georgia, serif",
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {
+            "color_bg": "#00ffff",
+            "color_text": "#ffffff"
+          }
+        },
+        "slideshow": {
+          "type": "slideshow",
+          "blocks": {
+            "slideshow-0": {
+              "type": "slide",
+              "settings": {}
+            },
+            "slideshow-1": {
+              "type": "slide",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "slideshow-0",
+            "slideshow-1"
+          ],
+          "settings": {}
+        },
+        "featured-products": {
+          "type": "featured-products",
+          "settings": {
+            "home_featured_products": "frontpage"
+          }
+        },
+        "featured-content": {
+          "type": "featured-content",
+          "blocks": {
+            "featured-content-0": {
+              "type": "text",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "featured-content-0"
+          ],
+          "settings": {}
+        },
+        "featured-collections": {
+          "type": "featured-collections",
+          "blocks": {
+            "featured-collections-0": {
+              "type": "collection",
+              "settings": {}
+            },
+            "featured-collections-1": {
+              "type": "collection",
+              "settings": {}
+            },
+            "featured-collections-2": {
+              "type": "collection",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "featured-collections-0",
+            "featured-collections-1",
+            "featured-collections-2"
+          ],
+          "settings": {}
+        },
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {}
+        }
+      },
+      "content_for_index": [
+        "featured-content",
+        "featured-collections",
+        "featured-products",
+        "newsletter"
+      ]
+    },
+    "TheMM Blue": {
+      "cart_type": "page",
+      "cart_notes_enable": false,
+      "checkout_accent_color": "#a26b25",
+      "checkout_banner_background_color": "#fff",
+      "checkout_button_color": "#000000",
+      "checkout_call_to_action_color": "#a26b25",
+      "checkout_use_header_image": false,
+      "collection_products_grid": "collage",
+      "color_body_bg": "#ffffff",
+      "color_body_text": "#1c1d1d",
+      "color_borders": "#1c1d1d",
+      "color_drawer_background": "#1c1d1d",
+      "color_drawer_border": "#343535",
+      "color_drawer_button": "#106bc1",
+      "color_drawer_button_text": "#ffffff",
+      "color_drawer_text": "#ffffff",
+      "footer_color_top": "#106bc1",
+      "footer_color_middle": "#4c4c4c",
+      "footer_color_bottom": "#106bc1",
+      "color_input": "#f6f6f6",
+      "color_newsletter": "#f6f6f6",
+      "color_primary": "#1c1d1d",
+      "color_product_background": "#f7f7f7",
+      "color_sale_tag": "#990000",
+      "color_secondary": "#a26b25",
+      "customer_layout": "customer_area",
+      "favicon_enable": false,
+      "product_vendor_enable": false,
+      "share_facebook": true,
+      "share_pinterest": true,
+      "share_twitter": true,
+      "social_sharing_style": "clean",
+      "type_accent_family": "Google_Montserrat_400_sans",
+      "type_accent_spacing": true,
+      "type_accent_transform": true,
+      "type_base_family": "Google_Lato_400_sans",
+      "type_base_italize_titles": true,
+      "type_base_size": "16px",
+      "type_header_base_size": "30px",
+      "type_header_border_thickness": "1px",
+      "type_header_family": "'Big Caslon', 'Book Antiqua', 'Palatino Linotype', Georgia, serif",
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {
+            "color_bg": "#00ffff",
+            "color_text": "#ffffff"
+          }
+        },
+        "slideshow": {
+          "type": "slideshow",
+          "blocks": {
+            "slideshow-0": {
+              "type": "slide",
+              "settings": {}
+            },
+            "slideshow-1": {
+              "type": "slide",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "slideshow-0",
+            "slideshow-1"
+          ],
+          "settings": {}
+        },
+        "featured-products": {
+          "type": "featured-products",
+          "settings": {
+            "home_featured_products": "frontpage"
+          }
+        },
+        "featured-content": {
+          "type": "featured-content",
+          "blocks": {
+            "featured-content-0": {
+              "type": "text",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "featured-content-0"
+          ],
+          "settings": {}
+        },
+        "featured-collections": {
+          "type": "featured-collections",
+          "blocks": {
+            "featured-collections-0": {
+              "type": "collection",
+              "settings": {}
+            },
+            "featured-collections-1": {
+              "type": "collection",
+              "settings": {}
+            },
+            "featured-collections-2": {
+              "type": "collection",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "featured-collections-0",
+            "featured-collections-1",
+            "featured-collections-2"
+          ],
+          "settings": {}
+        },
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {}
+        }
+      },
+      "content_for_index": [
+        "featured-content",
+        "featured-collections",
+        "featured-products",
+        "newsletter"
+      ]
+    },
+    "TheMM Green": {
+      "cart_type": "page",
+      "cart_notes_enable": false,
+      "checkout_accent_color": "#a26b25",
+      "checkout_banner_background_color": "#fff",
+      "checkout_button_color": "#000000",
+      "checkout_call_to_action_color": "#a26b25",
+      "checkout_use_header_image": false,
+      "collection_products_grid": "collage",
+      "color_body_bg": "#ffffff",
+      "color_body_text": "#1c1d1d",
+      "color_borders": "#1c1d1d",
+      "color_drawer_background": "#1c1d1d",
+      "color_drawer_border": "#343535",
+      "color_drawer_button": "#00a93c",
+      "color_drawer_button_text": "#ffffff",
+      "color_drawer_text": "#ffffff",
+      "footer_color_top": "#00a93c",
+      "footer_color_middle": "#4c4c4c",
+      "footer_color_bottom": "#00a93c",
+      "color_input": "#f6f6f6",
+      "color_newsletter": "#f6f6f6",
+      "color_primary": "#1c1d1d",
+      "color_product_background": "#f7f7f7",
+      "color_sale_tag": "#990000",
+      "color_secondary": "#a26b25",
+      "customer_layout": "customer_area",
+      "favicon_enable": false,
+      "product_vendor_enable": false,
+      "share_facebook": true,
+      "share_pinterest": true,
+      "share_twitter": true,
+      "social_sharing_style": "clean",
+      "type_accent_family": "Google_Montserrat_400_sans",
+      "type_accent_spacing": true,
+      "type_accent_transform": true,
+      "type_base_family": "Google_Lato_400_sans",
+      "type_base_italize_titles": true,
+      "type_base_size": "16px",
+      "type_header_base_size": "30px",
+      "type_header_border_thickness": "1px",
+      "type_header_family": "'Big Caslon', 'Book Antiqua', 'Palatino Linotype', Georgia, serif",
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {
+            "color_bg": "#00ffff",
+            "color_text": "#ffffff"
+          }
+        },
+        "slideshow": {
+          "type": "slideshow",
+          "blocks": {
+            "slideshow-0": {
+              "type": "slide",
+              "settings": {}
+            },
+            "slideshow-1": {
+              "type": "slide",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "slideshow-0",
+            "slideshow-1"
+          ],
+          "settings": {}
+        },
+        "featured-products": {
+          "type": "featured-products",
+          "settings": {
+            "home_featured_products": "frontpage"
+          }
+        },
+        "featured-content": {
+          "type": "featured-content",
+          "blocks": {
+            "featured-content-0": {
+              "type": "text",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "featured-content-0"
+          ],
+          "settings": {}
+        },
+        "featured-collections": {
+          "type": "featured-collections",
+          "blocks": {
+            "featured-collections-0": {
+              "type": "collection",
+              "settings": {}
+            },
+            "featured-collections-1": {
+              "type": "collection",
+              "settings": {}
+            },
+            "featured-collections-2": {
+              "type": "collection",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "featured-collections-0",
+            "featured-collections-1",
+            "featured-collections-2"
+          ],
+          "settings": {}
+        },
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {}
+        }
+      },
+      "content_for_index": [
+        "featured-content",
+        "featured-collections",
+        "featured-products",
+        "newsletter"
+      ]
+    },
+    "TheMM Yellow": {
+      "cart_type": "page",
+      "cart_notes_enable": false,
+      "checkout_accent_color": "#a26b25",
+      "checkout_banner_background_color": "#fff",
+      "checkout_button_color": "#000000",
+      "checkout_call_to_action_color": "#a26b25",
+      "checkout_use_header_image": false,
+      "collection_products_grid": "collage",
+      "color_body_bg": "#ffffff",
+      "color_body_text": "#1c1d1d",
+      "color_borders": "#1c1d1d",
+      "color_drawer_background": "#1c1d1d",
+      "color_drawer_border": "#343535",
+      "color_drawer_button": "#bbab0e",
+      "color_drawer_button_text": "#ffffff",
+      "color_drawer_text": "#ffffff",
+      "footer_color_top": "#bbab0e",
+      "footer_color_middle": "#4c4c4c",
+      "footer_color_bottom": "#bbab0e",
+      "color_input": "#f6f6f6",
+      "color_newsletter": "#f6f6f6",
+      "color_primary": "#1c1d1d",
+      "color_product_background": "#f7f7f7",
+      "color_sale_tag": "#990000",
+      "color_secondary": "#a26b25",
+      "customer_layout": "customer_area",
+      "favicon_enable": false,
+      "product_vendor_enable": false,
+      "share_facebook": true,
+      "share_pinterest": true,
+      "share_twitter": true,
+      "social_sharing_style": "clean",
+      "type_accent_family": "Google_Montserrat_400_sans",
+      "type_accent_spacing": true,
+      "type_accent_transform": true,
+      "type_base_family": "Google_Lato_400_sans",
+      "type_base_italize_titles": true,
+      "type_base_size": "16px",
+      "type_header_base_size": "30px",
+      "type_header_border_thickness": "1px",
+      "type_header_family": "'Big Caslon', 'Book Antiqua', 'Palatino Linotype', Georgia, serif",
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {
+            "color_bg": "#00ffff",
+            "color_text": "#ffffff"
+          }
+        },
+        "slideshow": {
+          "type": "slideshow",
+          "blocks": {
+            "slideshow-0": {
+              "type": "slide",
+              "settings": {}
+            },
+            "slideshow-1": {
+              "type": "slide",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "slideshow-0",
+            "slideshow-1"
+          ],
+          "settings": {}
+        },
+        "featured-products": {
+          "type": "featured-products",
+          "settings": {
+            "home_featured_products": "frontpage"
+          }
+        },
+        "featured-content": {
+          "type": "featured-content",
+          "blocks": {
+            "featured-content-0": {
+              "type": "text",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "featured-content-0"
+          ],
+          "settings": {}
+        },
+        "featured-collections": {
+          "type": "featured-collections",
+          "blocks": {
+            "featured-collections-0": {
+              "type": "collection",
+              "settings": {}
+            },
+            "featured-collections-1": {
+              "type": "collection",
+              "settings": {}
+            },
+            "featured-collections-2": {
+              "type": "collection",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "featured-collections-0",
+            "featured-collections-1",
+            "featured-collections-2"
+          ],
+          "settings": {}
+        },
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {}
+        }
+      },
+      "content_for_index": [
+        "featured-content",
+        "featured-collections",
+        "featured-products",
+        "newsletter"
+      ]
+    }
+  }
+}

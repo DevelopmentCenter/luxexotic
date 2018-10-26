@@ -1,0 +1,331 @@
+
+
+		<style>
+
+          #clock-ticker { 
+            display: block; 
+            margin-bottom: 15px;
+            text-align:center;
+          }
+          #clock-ticker .block {
+            position: relative;
+            color: #000;
+            display:inline-block;
+            text-align: center;
+            padding:0 8px;
+
+          }
+
+          #clock-ticker .block .flip-top { 
+            color: #555;
+            width: 88px;
+            height: 39px;
+            line-height: 40px;
+            font-size: 40px;
+            text-align: center;
+            font-weight:700;
+            font-family: Montserrat, HelveticaNeue, "Helvetica Neue";
+          }
+          #clock-ticker .block .labell {
+            color: #888;
+            font-weight:700;
+            font-size: 13px;
+            text-transform: uppercase;
+            width: 88px;
+            line-height: 25px;
+            text-align: center;
+            font-family: Montserrat, HelveticaNeue, "Helvetica Neue";
+          }
+
+          .timer-text {
+              display:none;
+              text-align: center;
+              color: #000;
+              font-size: 14px;
+              margin-bottom: 20px;
+              font-family: 'Open Sans', sans-serif;
+          }  
+
+        </style>
+		<div id="clock-ticker" class="clearfix">
+          <div class="timer-text">The sale will be over once the timer hits zero!</div>
+          <div class="block">
+            <span class="flip-top" id="numdays">0</span>
+            <br/>
+            <span class="labell">Days</span>
+          </div>
+
+          <div class="block">
+            <span class="flip-top" id="numhours">0</span>
+            <br/>
+            <span class="labell">Hours</span>
+          </div>
+
+          <div class="block">
+            <span class="flip-top" id="nummins">0</span>
+            <br/>
+            <span class="labell">Minutes</span>
+          </div>
+
+          <div class="block">
+            <span class="flip-top" id="numsecs">0</span>
+            <br/>
+            <span class="labell">Seconds</span>
+          </div>
+      </div>      
+		<script type="text/javascript">
+            $(document).ready(function(){
+
+              var tag = "ctdn24".match(/\d+/g);
+
+              var hour = parseInt(tag[1]) ;
+
+              var theDaysBox  = $("#numdays");
+              var theHoursBox = $("#numhours");
+              var theMinsBox  = $("#nummins");
+              var theSecsBox  = $("#numsecs");
+              var d = new Date();
+              var n = d.getDay(); 
+              var date;
+              if (n==0) {
+                date = 1;
+              };
+
+              if (n==1) {
+                date = 3;
+              };
+              if (n==2) {
+                date = 2;
+              };
+              if (n==3) {
+                date = 1;
+              };
+              if (n==4) {
+                date = 4;
+              };
+              if (n==5) {
+                date = 3;
+              };
+              if (n==6) {
+                date = 2;
+              };
+
+              var gg=0;
+              var hh=0;
+              var ii=0;
+
+
+              var nsec = 0-d.getSeconds();
+              if(nsec<0){
+
+              nsec=60-d.getSeconds();
+                gg=1;
+
+              }
+
+
+               var nmin = 0-d.getMinutes()-gg; 
+               if(nmin<0){
+              	nmin=60-d.getMinutes()-gg;
+                hh=1;
+
+              }
+
+
+              var nhrs = 0-d.getHours()-hh; 
+
+              if(nhrs<0){
+              	nhrs=24-d.getHours()-hh;
+                ii=1;
+
+              }
+
+
+                var ndat =date-ii;
+                if(ndat<0){
+
+
+                 var mmon= d.getMonth();
+
+                ndat=30+date-d.getDate()-ii;
+
+              }
+
+
+                theSecsBox.html(nsec);
+                theMinsBox.html(nmin); 
+                theHoursBox.html(nhrs); 
+                theDaysBox.html(ndat);
+
+                var refreshId = setInterval(function() {
+                  var currentSeconds = theSecsBox.text();
+                  var currentMins    = theMinsBox.text();
+                  var currentHours   = theHoursBox.text();
+                  var currentDays    = theDaysBox.text();
+
+                  if(currentSeconds == 0 && currentMins == 0 && currentHours == 0 && currentDays == 0) {
+                    // if everything rusn out our timer is done!!
+                    // do some exciting code in here when your countdown timer finishes
+
+                  } else if(currentSeconds == 0 && currentMins == 0 && currentHours == 0) {
+                    // if the seconds and minutes and hours run out we subtract 1 day
+                    theDaysBox.html(currentDays-1);
+                    theHoursBox.html("23");
+                    theMinsBox.html("59");
+                    theSecsBox.html("59");
+                  } else if(currentSeconds == 0 && currentMins == 0) {
+                    // if the seconds and minutes run out we need to subtract 1 hour
+                    theHoursBox.html(currentHours-1);
+                    theMinsBox.html("59");
+                    theSecsBox.html("59");
+                  } else if(currentSeconds == 0) {
+                    // if the seconds run out we need to subtract 1 minute
+                    theMinsBox.html(currentMins-1);
+                    theSecsBox.html("59");
+                  } else {
+                    theSecsBox.html(currentSeconds-1);
+                  }
+               }, 1000);
+            });
+        </script>
+	{% for tag in product.tags %}
+	{% if tag contains 'ctdn' %}
+	{% elsif tag contains 'ccdn' %}
+		<style>
+          #clock-ticker { display: block; margin-bottom: 15px;}
+          #clock-ticker .block {
+            position: relative;
+            color: #000;
+            font-weight: bold;
+            float: left;
+            text-align: center;
+            width: 25%;
+
+          }
+
+          #clock-ticker .block .flip-top { 
+            width: 88px;
+            height: 39px;
+            line-height: 40px;
+            font-size: 40px;
+            text-align: center;
+          }
+          #clock-ticker .block .label {
+            color: #000;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+            width: 88px;
+            line-height: 25px;
+            text-align: center;
+            font-family: "Calibri",Arial,sans-serif;
+          }
+        </style>
+  		<div id="clock-ticker" class="clearfix">
+          <div class="block">
+            <span class="flip-top" id="numdays">0</span>
+            <br/>
+            <span class="label">Days</span>
+          </div>
+
+          <div class="block">
+            <span class="flip-top" id="numhours">0</span>
+            <br/>
+            <span class="label">Hours</span>
+          </div>
+
+          <div class="block">
+            <span class="flip-top" id="nummins">0</span>
+            <br/>
+            <span class="label">Minutes</span>
+          </div>
+
+          <div class="block">
+            <span class="flip-top" id="numsecs">0</span>
+            <br/>
+            <span class="label">Seconds</span>
+          </div>
+        </div>      
+      	<script type="text/javascript">
+        	$(document).ready(function(){
+
+              var tag = "{{ tag  }}".match(/\d+/g);
+              var date = parseInt(tag[0]) ;
+              var hour = parseInt(tag[1]) ;
+
+              var theDaysBox  = $("#numdays");
+              var theHoursBox = $("#numhours");
+              var theMinsBox  = $("#nummins");
+              var theSecsBox  = $("#numsecs");
+              var d = new Date();
+
+              var gg=0;
+              var hh=0;
+              var ii=0;
+
+
+             var nsec = 0-d.getSeconds();
+             if(nsec<0){  
+               nsec=60-d.getSeconds();
+               gg=1;  
+             }
+
+
+             var nmin = 0-d.getMinutes()-gg; 
+             if(nmin<0){
+               nmin=60-d.getMinutes()-gg;
+               hh=1;  
+             }  
+
+             var nhrs = hour-d.getHours()-hh; 
+
+             if(nhrs<0){  
+               nhrs=hour+24-d.getHours()-hh;
+               ii=1;
+             }
+
+             var ndat =date- d.getDate()-ii;
+             if(ndat<0){ 
+               var mmon= d.getMonth();
+               ndat=30+12-d.getDate()-ii;
+
+             }  
+
+              theSecsBox.html(nsec);
+              theMinsBox.html(nmin); 
+              theHoursBox.html(nhrs); 
+              theDaysBox.html(ndat);
+
+              var refreshId = setInterval(function() {
+                var currentSeconds = theSecsBox.text();
+                var currentMins    = theMinsBox.text();
+                var currentHours   = theHoursBox.text();
+                var currentDays    = theDaysBox.text();
+
+                if(currentSeconds == 0 && currentMins == 0 && currentHours == 0 && currentDays == 0) {
+                  // if everything rusn out our timer is done!!
+                  // do some exciting code in here when your countdown timer finishes
+
+                } else if(currentSeconds == 0 && currentMins == 0 && currentHours == 0) {
+                  // if the seconds and minutes and hours run out we subtract 1 day
+                  theDaysBox.html(currentDays-1);
+                  theHoursBox.html("23");
+                  theMinsBox.html("59");
+                  theSecsBox.html("59");
+                } else if(currentSeconds == 0 && currentMins == 0) {
+                  // if the seconds and minutes run out we need to subtract 1 hour
+                  theHoursBox.html(currentHours-1);
+                  theMinsBox.html("59");
+                  theSecsBox.html("59");
+                } else if(currentSeconds == 0) {
+                  // if the seconds run out we need to subtract 1 minute
+                  theMinsBox.html(currentMins-1);
+                  theSecsBox.html("59");
+                } else {
+                  theSecsBox.html(currentSeconds-1);
+                }
+             }, 1000);
+          });
+        </script>
+  	{% endif %}  
+{% endfor %}

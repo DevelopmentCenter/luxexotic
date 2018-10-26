@@ -1,0 +1,66 @@
+ <style type="text/css">
+.visitor_counter {
+    display: block;
+    margin-top: -20px;
+    margin-bottom: -20px;
+    text-align: left;
+}
+.visitor_counter span {
+    display: inline-block;
+    text-align: center;
+}
+span.visitor_counter_a {
+    font-size: 18px;
+    font-weight: 700;
+}
+.visitor_counter span.visitor_counter_v b {
+  	padding: 5px;
+    font-size: 18px;
+    background: #02b875;
+    color: #fff;
+    display: inline-block;
+}
+span.visitor_counter_b {
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+ </style>
+  <p class="visitor_counter">
+  <span class="visitor_counter_a">Visitantes ahora mismo</span>
+  <span class="visitor_counter_v"><b id="visitor_counter_visitors"></b></span>
+</p>
+<script type="text/javascript">
+  $(function() {
+    if ($('#visitor_counter_visitors').length) {
+    var min = 75
+    var max = 90
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    var r = Math.floor(Math.random() * (max - min + 1)) + min;
+    var inc = '1';
+    var myRandom = ['1', '2', '3', '4', '5','10', '-1', '-2', '-3', '-4', '-5'];
+    var randomlyValue='';
+    var currentmyRandom='';
+    var plus = ['10', '20', '15'];
+    var range='';
+    
+    setInterval(function(){
+      randomlyValue =  Math.floor(Math.random() * myRandom.length);
+      currentmyRandom = myRandom[randomlyValue];
+      r = parseInt(r) + parseInt(currentmyRandom);
+      if(r <= min){
+        r = min;
+      }
+      if(r > max){
+        r = max;
+      }
+      jQuery("#visitor_counter_visitors").html(r+5)
+    }, 2000);
+  }
+
+
+  })
+</script>
+ 

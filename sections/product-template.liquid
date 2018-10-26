@@ -1,0 +1,600 @@
+<style>
+  .topBarProductFixed {
+    display:none;
+    position: fixed;
+    top: 0;
+    background: rgba(255, 255, 255, 0.95);
+    left: 0;
+    width: 100%;
+    box-shadow: 0 0 22px -1px #888;
+    z-index:999;
+  } 
+  .topBarProductFixed.active{
+    display:block;
+  }
+  .topBarProductFixed .grid__item.one-half > * {
+    display: inline-block;
+    margin: 0;
+    vertical-align: middle;
+  }
+  .mobile_title{
+    display: none;
+  }
+  @media only screen and (max-width:667px) {
+    .mobile_title{
+      display: block;
+      margin-bottom: 31px;
+    }
+    .desktop_title{
+      display: none;
+    }
+    .topBarProductFixed .grid__item.one-half:first-child{
+      width:30%;
+    }
+    .topBarProductFixed .grid__item.one-half:first-child h3{
+      display:none;
+    }
+    .topBarProductFixed .grid__item.one-half:last-child{
+      width:70%;
+    }
+
+   
+
+  }
+</style>
+<!-- /templates/product.liquid -->
+<div itemscope itemtype="http://schema.org/Product" id="ProductSection" data-section-id="{{ section.id }}" data-section-type="product-template" data-image-zoom-type="{{ section.settings.zoom_enable }}" data-enable-history-state="true">
+{% if product.metafields.loox.num_reviews %}
+	<div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+		<meta itemprop="ratingValue" content="{{ product.metafields.loox.avg_rating }}"/>
+		<meta itemprop="ratingCount" content="{{ product.metafields.loox.num_reviews }}"/>
+	</div>
+{% endif %}
+  <div itemscope itemtype="http://schema.org/Product">
+
+    <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+    <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
+
+    <div class="grid product-single mobile_title">
+      <div class="grid__item">
+        <h1 class="product-single__title " itemprop="name">{{ product.title }}</h1>
+      </div>
+    </div>
+
+    {% assign current_variant = product.selected_or_first_available_variant %}
+
+    <div class="grid product-single">
+      <div class="grid__item large--seven-twelfths medium--seven-twelfths text-center">
+
+        <div class="product-single__photos">
+          {% assign featured_image = product.selected_variant.featured_image | default: product.featured_image %}
+
+          {% comment %}
+          Display current variant image, or default first
+          {% endcomment %}
+          <div class="product-single__photo-wrapper">
+            <img class="product-single__photo"
+                 id="ProductPhotoImg"
+                 src="{{ featured_image | img_url: '600x', scale: 2 }}"
+                 {% if section.settings.zoom_enable %}data-mfp-src="{{ featured_image | img_url: '1024x1024', scale: 2 }}"{% endif %}
+                 alt="{{ featured_image.alt | escape }}" data-image-id="{{ featured_image.id }}">
+          </div>
+
+          {% comment %}
+          Display rest of product images, not repeating the featured one
+          {% endcomment %}
+          {% for image in product.images %}
+          {% unless image contains featured_image %}
+          <div class="product-single__photo-wrapper">
+            <img class="product-single__photo" src="{{ image.src | img_url: '600x', scale: 2 }}"
+                 {% if section.settings.zoom_enable %}data-mfp-src="{{ image.src | img_url: '1024x1024', scale: 2 }}"{% endif %}
+                 alt="{{ image.alt | escape }}"
+                 data-image-id="{{ image.id }}">
+          </div>
+          {% endunless %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="grid__item product-single__meta--wrapper medium--five-twelfths large--five-twelfths" style="padding: 0;">
+        <div class="product-single__meta" style="padding: 0;">
+          
+          {%comment%}
+          {% if section.settings.product_vendor_enable %}
+          <h2 class="product-single__vendor" itemprop="brand">{{ product.vendor }}</h2>
+          {% endif %}
+
+          <h1 class="product-single__title desktop_title" itemprop="name">{{ product.title }}</h1>
+
+          <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+            {% comment %}
+            Optionally show the 'compare at' or original price of the product.
+            {% endcomment %}
+
+            {% if product.compare_at_price_max > product.price %}
+            <span id="PriceA11y" class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+            <span class="product-single__price--wrapper">
+              <span id="ComparePrice" class="product-single__price--compare-at">
+                {% if current_variant.compare_at_price > current_variant.price %}
+                {{ current_variant.compare_at_price | money }}
+                {% endif %}
+              </span>
+            </span>
+            <span id="ComparePriceA11y" class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
+            {% else %}
+            <span id="PriceA11y" class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+            {% endif %}
+
+            <span id="ProductPrice"
+                  class="product-single__price{% if product.compare_at_price > product.price %} on-sale{% endif %}"
+                  itemprop="price"
+                  content="{{ current_variant.price | divided_by: 100.00 }}">
+              {{ current_variant.price | money }}
+            </span>
+
+            <hr class="hr--small">
+
+            <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+            <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+
+            <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-single__form" id="AddToCartForm">
+              {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
+              {% for option in product.options_with_values %}
+              <div class="radio-wrapper js product-form__item">
+                <label class="single-option-radio__label{% if option.name == 'Default' or option.name == 'Title' %} hidden-label{% endif %}"
+                       for="ProductSelect-option-{{ forloop.index0 }}">
+                  {{ option.name }}
+                </label>
+                <fieldset class="single-option-radio"
+                          name="{{ option.name }}"
+                          id="ProductSelect-option-{{ forloop.index0 }}">
+                  {% assign option_index = forloop.index %}
+                  <select class="single-option-selector">
+                  {% for value in option.values %}
+                  {% assign variant_label_state = true %}
+                  {% if product.options.size == 1 %}
+                  {% unless product.variants[forloop.index0].available  %}
+                  {% assign variant_label_state = false %}
+                  {% endunless %}
+                  {% endif %}
+                    
+                    <option value="{{ value | escape }}">{{ value | escape }}</option>
+
+                  {% endfor %}
+                </select>
+                </fieldset>
+              </div>
+              {% endfor %}
+              {% endunless %}
+
+              <select name="id" id="ProductSelect" class="product-single__variants no-js">
+                {% for variant in product.variants %}
+                {% if variant.available %}
+                <option {% if forloop.length <= 1 and variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
+                {% else %}
+                <option disabled="disabled">
+                  {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+                </option>
+                {% endif %}
+                {% endfor %}
+              </select>
+
+              {% comment %}
+              <div class="product-single__quantity">
+                <label for="Quantity" class="product-single__quantity-label js-quantity-selector">{{ 'products.product.quantity' | t }}</label>
+                <input type="number" hidden="hidden" id="Quantity" name="quantity" value="1" min="1" class="js-quantity-selector">
+              </div>
+              {% endcomment %}
+
+              <div class="product-single__add-to-cart">
+                <button type="submit" name="add" id="AddToCart" class="{% if section.settings.product_button_shake %}toShake{% endif %} addToCartPos big_atc btn"{% unless product.available %} disabled="disabled"{% endunless %}>
+                  <span id="AddToCartText">
+                    {% if product.available %}
+                    {{ 'products.product.add_to_cart' | t }}
+                    {% else %}
+                    {{ 'products.product.sold_out' | t }}
+                    {% endif %}
+                  </span>
+                </button>
+              </div>
+              <br>
+              
+              {% include 'visitor_counter' %}
+              <div id="progressbar">{% include 'progressbar' %}</div>
+              <center><div id="timer">{% include 'timer' %}</div></center>
+              <br>
+              <div class="safelogo">
+                <img src="{{ 'safecheckout.png' | asset_url }}" alt="safe logo">'
+              </div>
+              <div class="topBarProductFixed">
+                <div class="grid">
+                  <div class="grid__item one-half">
+                    <img height="60" src="{{ product | img_url: 'small' }}">
+                    <h3>{{ product.title | truncate:30}}</h3>
+                  </div>
+                  <div class="grid__item one-half">
+                    <span id="ProductPrice"
+                          class="product-single__price{% if product.compare_at_price > product.price %} on-sale{% endif %}"
+                          itemprop="price"
+                          content="{{ current_variant.price | divided_by: 100.00 }}">
+                      {{ current_variant.price | money }}
+                    </span>
+
+                    <div class="product-single__add-to-cart">
+                      <button type="submit" name="add" id="AddToCart" class="{% if section.settings.product_button_shake %}toShake{% endif %} btn"{% unless product.available %} disabled="disabled"{% endunless %}>
+                        <span id="AddToCartTexts">
+                          {% if product.available %}
+                          {{ 'products.product.add_to_cart' | t }}
+                          {% else %}
+                          {{ 'products.product.sold_out' | t }}
+                          {% endif %}
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            {%endcomment%}
+
+
+
+
+
+   <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+    <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+
+    <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-single__form" id="AddToCartForm">
+
+
+
+              <div class="content-form">
+
+ 
+    <div class="form-header">
+        <h1>Franco 7mm Cadena Full Diamond</h1>
+    </div>
+
+
+    <div class="form-body">
+        <div class="price-and-est-deli">
+            <div class="product-price">
+              <span class="new-price">
+                  {% include 'price' with current_variant.price %}
+                  {%comment%}<sup>$</sup>200<sup>00</sup>{%endcomment%}
+              </span>
+              <span class="original-price c-gray">
+                  {% if product.compare_at_price_max > product.price %}
+                    {% if current_variant.compare_at_price > current_variant.price %}
+                        <strike>{% include 'price' with current_variant.compare_at_price %}</strike>
+                    {% endif %}
+                    <span id="ComparePriceA11y" class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
+                  {% else %}
+                    <span id="PriceA11y" class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+                  {% endif %}
+              </span>
+            </div>
+            <div class="est-delivery">
+              <div>Entrega Est. , Oct 21 - Oct 28</div>
+              <div>
+                  <span class="free-shipping">Envio GRATIS</span>
+                  <span class="c-gray b-l-p"> 30-dias de retorno</span>
+              </div>
+            </div>
+        </div>
+        <div class="variation-cuantity">
+            
+            {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
+              {% for option in product.options_with_values %}
+                <div class="b-bottom">
+                    <button class="accordion" type="button">{{ option.name }} <i class="fas fa-angle-right" ></i></button>
+        
+                    {% assign option_index = forloop.index %}  
+                      <div class="a-panel">   
+                      <select class="single-option-selector__radio form-control"
+                      name="{{ option.name }}"
+                      id="ProductSelect-option-{{ forloop.index0 }}" data-index="option{{ option_index }}"> 
+                      {% for value in option.values %}
+                        {% assign variant_label_state = true %}
+                        {% if product.options.size == 1 %}
+                          {% unless product.variants[forloop.index0].available  %}
+                            {% assign variant_label_state = false %}
+                          {% endunless %}
+                        {% endif %}     
+                        <option
+                          {% if option.selected_value == value %} checked="checked"{% endif %}
+                          {% unless variant_label_state %} disabled="disabled"{% endunless %}
+                          value="{{ value | escape }}"
+                          
+                          name="{{ option.name }}"
+                          id="ProductSelect-option-{{ option.name }}-{{ value | escape }}">{{ value | escape }}</option>
+                      {% endfor %}             
+                      </select>  
+                    </div>
+                </div>
+              {% endfor %}
+              {% endunless %}
+
+
+
+
+
+
+
+
+            <select name="id" id="ProductSelect" class="product-single__variants no-js">
+                {% for variant in product.variants %}
+                {% if variant.available %}
+                <option {% if forloop.length <= 1 and variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
+                {% else %}
+                <option disabled="disabled">
+                  {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+                </option>
+                {% endif %}
+                {% endfor %}
+            </select>
+            <div class="content-quantity">
+              Cantidad
+
+              <div class="qty">
+                  <button type="button" class="qty-adjust qty--minus">
+                    <span class="icon icon-minus" aria-hidden="true"></span>
+                  </button>
+                  <input type="text" class="qty-num js-quantity-selector" id="Quantity" name="quantity" value="1" min="0" pattern="[0-9]*">
+                  <button type="button" class="qty-adjust qty--plus">
+                    <span class="icon icon-plus" aria-hidden="true"></span>
+                  </button>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-footer">
+        <div class="form-btn-save">
+            <button><i class="far fa-heart"></i></button>
+        </div>
+        <div class="form-btn-buy-now">
+            <button type="submit" name="add" id="AddToCart" {% unless product.available %} disabled="disabled"{% endunless %} class="addToCartPos">
+              comprar
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="topBarProductFixed">
+                <div class="grid">
+                  <div class="grid__item one-half">
+                    <img height="60" src="{{ product | img_url: 'small' }}">
+                    <h3>{{ product.title | truncate:30}}</h3>
+                  </div>
+                  <div class="grid__item one-half">
+                    <span id="ProductPrice"
+                          class="product-single__price{% if product.compare_at_price > product.price %} on-sale{% endif %}"
+                          itemprop="price"
+                          content="{{ current_variant.price | divided_by: 100.00 }}">
+                      {{ current_variant.price | money }}
+                    </span>
+
+                    <div class="product-single__add-to-cart">
+                      <button type="submit" name="add" id="AddToCart" class="{% if section.settings.product_button_shake %}toShake{% endif %} btn"{% unless product.available %} disabled="disabled"{% endunless %}>
+                        <span id="AddToCartTexts">
+                          {% if product.available %}
+                          {{ 'products.product.add_to_cart' | t }}
+                          {% else %}
+                          {{ 'products.product.sold_out' | t }}
+                          {% endif %}
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+</form>
+
+
+
+
+
+
+<div class="content-other-information">
+  <div class="b-bottom">
+    <button class="accordion">Detalles del producto<i class="fas fa-angle-down"></i></button>
+    <div class="a-panel">
+        {{ product.description }}
+        <!-- Autoinstall code -->
+        <div data-app="eastsideco_sizeGuides"
+            data-shop="{{ shop.permanent_domain }}"
+            data-tags="{{ product.tags | join:',' | escape }}"
+            data-metafields="{{ product.metafields.esc-size-matters.tag }}"
+            data-popup="">
+        </div>
+        <!-- / Autoinstall code -->
+    </div>
+  </div>
+  <div class="b-bottom">
+    <button class="accordion">Opiniones <i class="fas fa-angle-down"></i></button>
+    <div class="a-panel">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed vestibulum nibh. Sed gravida suscipit augue ut dictum. Sed suscipit velit lectus, id aliquet justo faucibus sit amet.
+    </div>
+  </div>
+  <div class="b-bottom">
+    <button class="accordion">Envios <i class="fas fa-angle-down"></i></button>
+    <div class="a-panel">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed vestibulum nibh. Sed gravida suscipit augue ut dictum. Sed suscipit velit lectus, id aliquet justo faucibus sit amet.
+    </div>
+  </div>
+  <div class="b-bottom">
+    <button class="accordion">Garantía de LuxeXotic <i class="fas fa-angle-down"></i></button>
+    <div class="a-panel">
+      {{ section.settings.guarantee_text }}
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          </div>
+
+            {%comment%}
+          <div class="product-single__description rte" itemprop="description">
+            {{ product.description }}
+            <!-- Autoinstall code -->
+                <div data-app="eastsideco_sizeGuides"
+                     data-shop="{{ shop.permanent_domain }}"
+                     data-tags="{{ product.tags | join:',' | escape }}"
+                     data-metafields="{{ product.metafields.esc-size-matters.tag }}"
+                     data-popup="">
+                </div>
+            <!-- / Autoinstall code -->
+        
+          </div>
+          <div class="gurantee_section">
+            <h2>GARANTÍA LUXEXOTIC.store</h2>
+            {{ section.settings.guarantee_text }}
+          </div>
+          <div class="">
+          	<img src="{{ 'trusted.gif' | asset_url }}">
+          </div>
+          {%endcomment%}
+
+          {% if section.settings.social_sharing_products %}
+          {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+          {% endif %}
+
+          <div class="product-single__description rte" itemprop="description">           
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    {% if collection %}
+    <hr class="hr--clear">
+    <div class="text-center">
+      <a href="{{ collection.url }}" class="return-link">&larr; {{ 'products.general.collection_return' | t: collection: collection.title }}</a>
+    </div>
+    {% endif %}
+
+  </div>
+</div>
+{% unless product.empty == empty %}
+<script type="application/json" id="ProductJson-{{ section.id }}">
+    {{ product | json }}
+</script>
+{% endunless %}
+
+<script>
+  jQuery(document).ready(function($){
+    var sl = $('.topBarProductFixed');
+    $(window).scroll(function() {
+      if ($(this).scrollTop() > $('.addToCartPos').offset().top) {
+        sl.addClass('active');
+      }
+      else {
+        sl.removeClass('active');
+      }
+    });
+
+  });
+</script>
+{% if section.settings.product_button_shake %}
+<script>
+  $( document ).ready(function() {
+          setInterval(function() {
+                $( ".toShake" ).toggleClass( "shake" );
+          },2000);
+        });
+</script>
+{{ 'product.js' | asset_url | script_tag }}
+{% endif %}
+{% schema %}
+{
+"name": "Product pages",
+"settings": [
+{
+"type": "checkbox",
+"id": "zoom_enable",
+"label": "Enable image zoom"
+},
+{
+"type": "checkbox",
+"id": "social_sharing_products",
+"label": "Enable product sharing",
+"default": true
+},
+{
+"type": "checkbox",
+"id": "product_vendor_enable",
+"label": "Show product vendor"
+},
+{
+"type": "textarea",
+"id": "guarantee_text",
+"label": "GUARANTEE Text"
+},
+{
+"type": "checkbox",
+"id": "product_button_shake",
+"label": "Shake Buy Button"
+}
+]
+}
+{% endschema %}
+
+<div id="looxReviews" data-product-id="{{product.id}}">{{ product.metafields.loox.reviews }}</div>
+
+<div id="cbb-frequently-bought-box"></div>
+
+
+
+<hr class="hr--clear">
+{% include 'related_product' %}
+<script text="text/javascript">
+  var _learnq = _learnq || [];
+  var item = {
+    Name: {{ product.title|json }},
+    ProductID: {{ product.id|json }},
+    Categories: {{ product.collections|map:'title'|json }},
+    ImageURL: "https:{{ product.featured_image.src|img_url:'grande' }}",
+    URL: "{{ shop.secure_url }}{{ product.url }}",
+    Brand: {{ product.vendor|json }},
+    Price: {{ product.price|money|json }},
+    CompareAtPrice: {{ product.compare_at_price_max|money|json }}
+  };
+
+  _learnq.push(['track', 'Viewed Product', item]);
+  _learnq.push(['trackViewedItem', {
+    Title: item.Name,
+    ItemId: item.ProductID,
+    Categories: item.Categories,
+    ImageUrl: item.ImageURL,
+    Url: item.URL,
+    Metadata: {
+      Brand: item.Brand,
+      Price: item.Price,
+      CompareAtPrice: item.CompareAtPrice
+    }
+  }]);
+
+</script>
+
+	

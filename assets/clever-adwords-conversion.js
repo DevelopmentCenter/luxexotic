@@ -1,0 +1,1 @@
+new Image(1,1).src = 'https://www.googleadservices.com/pagead/conversion/871391639/?currency='+Shopify.checkout.currency'/?value='+Shopify.checkout.total_price+'&label=YDF0CNbZv4kBEJfDwZ8D&guid=ON&oid='+Shopify.checkout.id+'&script=0';
