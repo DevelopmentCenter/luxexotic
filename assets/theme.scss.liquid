@@ -1,10 +1,10 @@
 /*============================================================================
-  Brooklyn by Shopify
+Brooklyn by Shopify
 ==============================================================================*/
 
 /*================ Variables, theme settings, and Sass mixins from Timber ================*/
 /*============================================================================
-  #Sass Mixins
+#Sass Mixins
 ==============================================================================*/
 .clearfix {
   &:after {
@@ -31,19 +31,19 @@
 }
 
 /*============================================================================
-  Prefix mixin for generating vendor prefixes.
-  Based on https://github.com/thoughtbot/bourbon/blob/master/app/assets/stylesheets/addons/_prefixer.scss
-  Usage:
-    // Input:
-    .element {
-      @include prefix(transform, scale(1), ms webkit spec);
-    }
-    // Output:
-    .element {
-      -ms-transform: scale(1);
-      -webkit-transform: scale(1);
-      transform: scale(1);
-    }
+Prefix mixin for generating vendor prefixes.
+Based on https://github.com/thoughtbot/bourbon/blob/master/app/assets/stylesheets/addons/_prefixer.scss
+Usage:
+// Input:
+.element {
+@include prefix(transform, scale(1), ms webkit spec);
+}
+// Output:
+.element {
+-ms-transform: scale(1);
+-webkit-transform: scale(1);
+transform: scale(1);
+}
 ==============================================================================*/
 @mixin prefixFlex($property, $value, $prefixes) {
   @each $prefix in $prefixes {
@@ -154,16 +154,16 @@
   font-weight: $accentFontWeight;
   font-style: normal;
   {% if settings.type_accent_spacing %}
-    letter-spacing: 0.1em;
+  letter-spacing: 0.1em;
   {% endif %}
   {% if settings.type_accent_transform %}
-    text-transform: uppercase;
+  text-transform: uppercase;
   {% endif %}
 }
 
 @mixin bodyFontItalic {
   {% if settings.type_base_italize_titles %}
-    font-style: italic;
+  font-style: italic;
   {% endif %}
 }
 
@@ -210,8 +210,8 @@
 }
 
 /*============================================================================
-  Dependency-free breakpoint mixin
-    - http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/
+Dependency-free breakpoint mixin
+- http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/
 ==============================================================================*/
 $min: min-width;
 $max: max-width;
@@ -232,8 +232,8 @@ $max: max-width;
 }
 
 /*============================================================================
-  Flexbox prefix mixins from Bourbon
-    https://github.com/thoughtbot/bourbon/blob/master/app/assets/stylesheets/css3/_flex-box.scss
+Flexbox prefix mixins from Bourbon
+https://github.com/thoughtbot/bourbon/blob/master/app/assets/stylesheets/css3/_flex-box.scss
 ==============================================================================*/
 @mixin display-flexbox() {
   display: -webkit-flex;
@@ -391,7 +391,7 @@ $collageImageMedium: 310px;
 $collageImageSmall: 230px;
 
 {% if settings.product_vendor_enable %}
-  $collageImageLarge: 544px;
+$collageImageLarge: 544px;
 {% endif %}
 
 // Collection Collage Grid
@@ -410,31 +410,31 @@ $color-blankstate-background: rgba($colorTextBody, 0.10);
 
 /*================ Typography ================*/
 {% if settings.type_base_family contains 'Google' %}
-  {% assign type_base_parts = settings.type_base_family | split: '_' %}
-  {% assign type_base_name = type_base_parts[1] %}
-  {% capture base_family %}"{{ type_base_name | split: ':' | first | replace: '+', ' ' }}"{% if type_base_parts.last == 'serif' %}, serif {% else %}, "HelveticaNeue", "Helvetica Neue", sans-serif{% endif %}{% endcapture %}
+{% assign type_base_parts = settings.type_base_family | split: '_' %}
+{% assign type_base_name = type_base_parts[1] %}
+{% capture base_family %}"{{ type_base_name | split: ':' | first | replace: '+', ' ' }}"{% if type_base_parts.last == 'serif' %}, serif {% else %}, "HelveticaNeue", "Helvetica Neue", sans-serif{% endif %}{% endcapture %}
 {% else %}
-  {% assign base_family = settings.type_base_family %}
+{% assign base_family = settings.type_base_family %}
 {% endif %}
 
 {% if settings.type_header_family contains 'Google' %}
-  {% assign type_header_parts = settings.type_header_family | split: '_' %}
-  {% assign type_header_name = type_header_parts[1] %}
-  {% capture header_family %}"{{ type_header_name | split: ':' | first | replace: '+', ' ' }}"{% if type_header_parts.last == 'serif' %}, serif {% else %}, "HelveticaNeue", "Helvetica Neue", sans-serif{% endif %}{% endcapture %}
-  {% assign header_weight = type_header_parts[2] | split: ',' %}
+{% assign type_header_parts = settings.type_header_family | split: '_' %}
+{% assign type_header_name = type_header_parts[1] %}
+{% capture header_family %}"{{ type_header_name | split: ':' | first | replace: '+', ' ' }}"{% if type_header_parts.last == 'serif' %}, serif {% else %}, "HelveticaNeue", "Helvetica Neue", sans-serif{% endif %}{% endcapture %}
+{% assign header_weight = type_header_parts[2] | split: ',' %}
 {% else %}
-  {% assign header_family = settings.type_header_family %}
-  {% assign header_weight = 400 %}
+{% assign header_family = settings.type_header_family %}
+{% assign header_weight = 400 %}
 {% endif %}
 
 {% if settings.type_accent_family contains 'Google' %}
-  {% assign type_accent_parts = settings.type_accent_family | split: '_' %}
-  {% assign type_accent_name = type_accent_parts[1] %}
-  {% capture accent_family %}"{{ type_accent_name | split: ':' | first | replace: '+', ' ' }}"{% if type_accent_parts.last == 'serif' %}, serif {% else %}, "HelveticaNeue", "Helvetica Neue", sans-serif{% endif %}{% endcapture %}
-  {% assign accent_weight = type_accent_parts[2] | split: ',' %}
+{% assign type_accent_parts = settings.type_accent_family | split: '_' %}
+{% assign type_accent_name = type_accent_parts[1] %}
+{% capture accent_family %}"{{ type_accent_name | split: ':' | first | replace: '+', ' ' }}"{% if type_accent_parts.last == 'serif' %}, serif {% else %}, "HelveticaNeue", "Helvetica Neue", sans-serif{% endif %}{% endcapture %}
+{% assign accent_weight = type_accent_parts[2] | split: ',' %}
 {% else %}
-  {% assign accent_family = settings.type_accent_family %}
-  {% assign accent_weight = 700 %}
+{% assign accent_family = settings.type_accent_family %}
+{% assign accent_weight = 700 %}
 {% endif %}
 
 $headerFontStack: {{ header_family }};
@@ -450,13 +450,13 @@ $accentFontWeight: {{ accent_weight }};
 @font-face {
   font-family: 'icons';
   src: url('{{ "icons.eot" | asset_url }}');
-  src: url('{{ "icons.eot" | asset_url }}#iefix') format("embedded-opentype"),
-       url('{{ "icons.woff" | asset_url }}') format("woff"),
-       url('{{ "icons.ttf" | asset_url }}') format("truetype"),
-       url('{{ "icons.svg" | asset_url }}#timber-icons') format("svg");
-  font-weight: normal;
-  font-style: normal;
-};
+    src: url('{{ "icons.eot" | asset_url }}#iefix') format("embedded-opentype"),
+      url('{{ "icons.woff" | asset_url }}') format("woff"),
+        url('{{ "icons.ttf" | asset_url }}') format("truetype"),
+          url('{{ "icons.svg" | asset_url }}#timber-icons') format("svg");
+            font-weight: normal;
+            font-style: normal;
+            };
 
 $socialIconFontStack: 'icons';
 
@@ -556,10 +556,10 @@ $socialIconFontStack: 'icons';
   left: 8px;
   right: 8px;
   z-index: 1044; }
-  .mfp-preloader a {
-    color: #CCC; }
-    .mfp-preloader a:hover {
-      color: #FFF; }
+.mfp-preloader a {
+  color: #CCC; }
+.mfp-preloader a:hover {
+  color: #FFF; }
 
 .mfp-s-ready .mfp-preloader {
   display: none; }
@@ -599,11 +599,11 @@ button::-moz-focus-inner {
   font-style: normal;
   font-size: 28px;
   font-family: Arial, Baskerville, monospace; }
-  .mfp-close:hover, .mfp-close:focus {
-    opacity: 1;
-    filter: alpha(opacity=100); }
-  .mfp-close:active {
-    top: 1px; }
+.mfp-close:hover, .mfp-close:focus {
+  opacity: 1;
+  filter: alpha(opacity=100); }
+.mfp-close:active {
+  top: 1px; }
 
 .mfp-close-btn-in .mfp-close {
   color: #333; }
@@ -635,72 +635,72 @@ button::-moz-focus-inner {
   width: 90px;
   height: 110px;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
-  .mfp-arrow:active {
-    margin-top: -54px; }
-  .mfp-arrow:hover, .mfp-arrow:focus {
-    opacity: 1;
-    filter: alpha(opacity=100); }
-  .mfp-arrow:before, .mfp-arrow:after, .mfp-arrow .mfp-b, .mfp-arrow .mfp-a {
-    content: '';
-    display: block;
-    width: 0;
-    height: 0;
-    position: absolute;
-    left: 0;
-    top: 0;
-    margin-top: 35px;
-    margin-left: 35px;
-    border: medium inset transparent; }
-  .mfp-arrow:after, .mfp-arrow .mfp-a {
-    border-top-width: 13px;
-    border-bottom-width: 13px;
-    top: 8px; }
-  .mfp-arrow:before, .mfp-arrow .mfp-b {
-    border-top-width: 21px;
-    border-bottom-width: 21px;
-    opacity: 0.7; }
+.mfp-arrow:active {
+  margin-top: -54px; }
+.mfp-arrow:hover, .mfp-arrow:focus {
+  opacity: 1;
+  filter: alpha(opacity=100); }
+.mfp-arrow:before, .mfp-arrow:after, .mfp-arrow .mfp-b, .mfp-arrow .mfp-a {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-top: 35px;
+  margin-left: 35px;
+  border: medium inset transparent; }
+.mfp-arrow:after, .mfp-arrow .mfp-a {
+  border-top-width: 13px;
+  border-bottom-width: 13px;
+  top: 8px; }
+.mfp-arrow:before, .mfp-arrow .mfp-b {
+  border-top-width: 21px;
+  border-bottom-width: 21px;
+  opacity: 0.7; }
 
 .mfp-arrow-left {
   left: 0; }
-  .mfp-arrow-left:after, .mfp-arrow-left .mfp-a {
-    border-right: 17px solid #FFF;
-    margin-left: 31px; }
-  .mfp-arrow-left:before, .mfp-arrow-left .mfp-b {
-    margin-left: 25px;
-    border-right: 27px solid #3F3F3F; }
+.mfp-arrow-left:after, .mfp-arrow-left .mfp-a {
+  border-right: 17px solid #FFF;
+  margin-left: 31px; }
+.mfp-arrow-left:before, .mfp-arrow-left .mfp-b {
+  margin-left: 25px;
+  border-right: 27px solid #3F3F3F; }
 
 .mfp-arrow-right {
   right: 0; }
-  .mfp-arrow-right:after, .mfp-arrow-right .mfp-a {
-    border-left: 17px solid #FFF;
-    margin-left: 39px; }
-  .mfp-arrow-right:before, .mfp-arrow-right .mfp-b {
-    border-left: 27px solid #3F3F3F; }
+.mfp-arrow-right:after, .mfp-arrow-right .mfp-a {
+  border-left: 17px solid #FFF;
+  margin-left: 39px; }
+.mfp-arrow-right:before, .mfp-arrow-right .mfp-b {
+  border-left: 27px solid #3F3F3F; }
 
 .mfp-iframe-holder {
   padding-top: 40px;
   padding-bottom: 40px; }
-  .mfp-iframe-holder .mfp-content {
-    line-height: 0;
-    width: 100%;
-    max-width: 900px; }
-  .mfp-iframe-holder .mfp-close {
-    top: -40px; }
+.mfp-iframe-holder .mfp-content {
+  line-height: 0;
+  width: 100%;
+  max-width: 900px; }
+.mfp-iframe-holder .mfp-close {
+  top: -40px; }
 
 .mfp-iframe-scaler {
   width: 100%;
   height: 0;
   overflow: hidden;
   padding-top: 56.25%; }
-  .mfp-iframe-scaler iframe {
-    position: absolute;
-    display: block;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
-    background: #000; }
+.mfp-iframe-scaler iframe {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  background: #000; }
 
 /* Main image in popup */
 img.mfp-img {
@@ -718,26 +718,26 @@ img.mfp-img {
 /* The shadow behind the image */
 .mfp-figure {
   line-height: 0; }
-  .mfp-figure:after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 40px;
-    bottom: 40px;
-    display: block;
-    right: 0;
-    width: auto;
-    height: auto;
-    z-index: -1;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
-    background: #444; }
-  .mfp-figure small {
-    color: #BDBDBD;
-    display: block;
-    font-size: 12px;
-    line-height: 14px; }
-  .mfp-figure figure {
-    margin: 0; }
+.mfp-figure:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 40px;
+  bottom: 40px;
+  display: block;
+  right: 0;
+  width: auto;
+  height: auto;
+  z-index: -1;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  background: #444; }
+.mfp-figure small {
+  color: #BDBDBD;
+  display: block;
+  font-size: 12px;
+  line-height: 14px; }
+.mfp-figure figure {
+  margin: 0; }
 
 .mfp-bottom-bar {
   margin-top: -36px;
@@ -762,8 +762,8 @@ img.mfp-img {
 
 @media screen and (max-width: 800px) and (orientation: landscape), screen and (max-height: 300px) {
   /**
-       * Remove all paddings around the image on small screen
-       */
+  * Remove all paddings around the image on small screen
+  */
   .mfp-img-mobile .mfp-image-holder {
     padding-left: 0;
     padding-right: 0; }
@@ -785,8 +785,8 @@ img.mfp-img {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box; }
-    .mfp-img-mobile .mfp-bottom-bar:empty {
-      padding: 0; }
+  .mfp-img-mobile .mfp-bottom-bar:empty {
+    padding: 0; }
   .mfp-img-mobile .mfp-counter {
     right: 5px;
     top: 3px; }
@@ -800,7 +800,7 @@ img.mfp-img {
     position: fixed;
     text-align: center;
     padding: 0; }
- }
+}
 
 @media all and (max-width: 900px) {
   .mfp-arrow {
@@ -818,7 +818,7 @@ img.mfp-img {
   .mfp-container {
     padding-left: 6px;
     padding-right: 6px; }
- }
+}
 
 .mfp-ie7 .mfp-img {
   padding: 0; }
@@ -906,8 +906,8 @@ tr:first-child td {
 }
 
 /*============================================================================
-  Responsive tables, defined with .table--responsive on table element.
-  Only defined for IE9+
+Responsive tables, defined with .table--responsive on table element.
+Only defined for IE9+
 ==============================================================================*/
 html:not(.lt-ie9) {
   .table--responsive {
@@ -1124,11 +1124,11 @@ blockquote {
 }
 
 .ajaxcart__subtotal {
-  
+
   font-family: "Helvetica Neue",sans-serif;
   font-weight: bold;
   font-style: normal;
-  
+
 }
 
 .ajaxcart__qty-num[type="text"] {
@@ -1153,8 +1153,8 @@ blockquote {
 .drawer.drawer--right .drawer__title {
   font-size: em(24px);
   text-align:center;
-    font-family: sans-serif;
-    font-weight: normal;
+  font-family: sans-serif;
+  font-weight: normal;
 }
 
 .drawer__title {
@@ -1179,23 +1179,23 @@ label {
 }
 
 ::-webkit-input-placeholder {
-   color: $colorTextBody;
-   opacity: 0.6;
+  color: $colorTextBody;
+  opacity: 0.6;
 }
 
 :-moz-placeholder {
-   color: $colorTextBody;
-   opacity: 0.6;
+  color: $colorTextBody;
+  opacity: 0.6;
 }
 
 :-ms-input-placeholder {
-   color: $colorTextBody;
-   opacity: 0.6;
+  color: $colorTextBody;
+  opacity: 0.6;
 }
 
 ::-ms-input-placeholder {
-   color: $colorTextBody;
-   opacity: 1;
+  color: $colorTextBody;
+  opacity: 1;
 }
 
 input,
@@ -1580,8 +1580,8 @@ a {
   height: $drawerHeaderHeight;
   overflow: visible; // for close button hit area
 
-  
-  
+
+
   @include at-query($min, $large) {
     left: $gutter;
     right: $gutter;
@@ -1589,7 +1589,7 @@ a {
 }
 
 .drawer.drawer--right .drawer__fixed-header {
-  
+
   z-index: 1;
   -webkit-box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.25);
   -moz-box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.25);
@@ -1621,7 +1621,7 @@ a {
 
 
 @include at-query($min, $postSmall) {
-  
+
   .drawer__close-button {
     right: 0;
   }
@@ -1661,22 +1661,22 @@ a {
 }
 
 .ajaxcart__subtotal-grid {
-	font-size: 17px;
-	background: #fff;
-  	padding: 15px 10%;
+  font-size: 17px;
+  background: #fff;
+  padding: 15px 10%;
 }
 
 .ajaxcart__subtotal-grid p {
 
-	margin: 0;
+  margin: 0;
 }
 
 .ajaxcart__footer--fixed .btn--secondary {
 
-	text-transform: none;
-   	font-weight: normal;
-  	font-size: 1em;
-    padding: 15px 20px;
+  text-transform: none;
+  font-weight: normal;
+  font-size: 1em;
+  padding: 15px 20px;
 }
 
 .ajaxcart__footer--fixed {
@@ -1702,7 +1702,7 @@ a {
 .ajaxcart__qty {
   //max-width: 75px;
   float: right;
-  
+
   font-size: 15px;
   //text-align: center;
 
@@ -1733,11 +1733,11 @@ a {
 }
 
 /*============================================================================
-  Social Icon Buttons v1.0
-  Author:
-    Carson Shold | @cshold
-    http://www.carsonshold.com
-  MIT License
+Social Icon Buttons v1.0
+Author:
+Carson Shold | @cshold
+http://www.carsonshold.com
+MIT License
 ==============================================================================*/
 
 /*================ Social share buttons ================*/
@@ -1747,7 +1747,6 @@ $shareCountBg: $colorBody;
 
 .social-sharing {
   font-family: $bodyFontStack;
-  text-align:center;
 
   * {
     -webkit-box-sizing:border-box;
@@ -2032,14 +2031,14 @@ $shareCountBg: $colorBody;
 
 /*================ Module-specific styles ================*/
 /*============================================================================
-  To update Slick slider to a new version,
-  scroll down to #Slick Slider SCSS and follow the instructions
+To update Slick slider to a new version,
+scroll down to #Slick Slider SCSS and follow the instructions
 
-  Default Slick classes all start with '.slick'
-  Custom classes all start with '.hero'
+Default Slick classes all start with '.slick'
+Custom classes all start with '.hero'
 
-  Extra specificity in selectors is used to override default
-  styles before including the default Slick CSS
+Extra specificity in selectors is used to override default
+styles before including the default Slick CSS
 ==============================================================================*/
 
 /*================ Prev/next and pagination ================*/
@@ -2135,8 +2134,8 @@ $shareCountBg: $colorBody;
 }
 
 /*============================================================================
-  General slide styles
-    - Sizes based on height of image when 100% of container width
+General slide styles
+- Sizes based on height of image when 100% of container width
 ==============================================================================*/
 .hero__slide {
   position: relative;
@@ -2178,8 +2177,8 @@ $shareCountBg: $colorBody;
 }
 
 /*============================================================================
-  Full screen hero styles
-    - Uses css background image
+Full screen hero styles
+- Uses css background image
 ==============================================================================*/
 .hero--full-height {
   // Height is set by JS on slider init. vh is a nice default for modern browsers.
@@ -2313,10 +2312,10 @@ $shareCountBg: $colorBody;
 }
 
 /*============================================================================
-  #Slick Slider overrides
-    - If upgrading Slick's styles, use the following variables/functions
-      instead of the slick defaults
-    - Only overwrite slick's default styles starting at #Slick Slider SCSS
+#Slick Slider overrides
+- If upgrading Slick's styles, use the following variables/functions
+instead of the slick defaults
+- Only overwrite slick's default styles starting at #Slick Slider SCSS
 ==============================================================================*/
 $slick-font-family: "slick-icons, sans-serif";
 $slick-arrow-color: $colorPrimary;
@@ -2339,10 +2338,10 @@ $slick-opacity-not-active: 0.25;
 @function slick-font-url($url) {}
 
 /*============================================================================
-  #Slick Slider SCSS
-    - Everything below this line is unchanged from Slick's scss file
-    - When updating to a new version, don't include the variables/function
-      that were modified above
+#Slick Slider SCSS
+- Everything below this line is unchanged from Slick's scss file
+- When updating to a new version, don't include the variables/function
+that were modified above
 ==============================================================================*/
 .slick-slider {
   position: relative;
@@ -2361,7 +2360,7 @@ $slick-opacity-not-active: 0.25;
 }
 .slick-list {
   position: relative;
-  overflow: hidden;
+  /*   overflow: hidden; */
   display: block;
   margin: 0;
   padding: 0;
@@ -2449,9 +2448,9 @@ $slick-opacity-not-active: 0.25;
     font-family:"slick";
     src:  slick-font-url("slick.eot");
     src:  slick-font-url("slick.eot?#iefix") format("embedded-opentype"),
-        slick-font-url("slick.woff") format("woff"),
-        slick-font-url("slick.ttf") format("truetype"),
-        slick-font-url("slick.svg#slick") format("svg");
+      slick-font-url("slick.woff") format("woff"),
+      slick-font-url("slick.ttf") format("truetype"),
+      slick-font-url("slick.svg#slick") format("svg");
     font-weight: normal;
     font-style: normal;
   }
@@ -2480,7 +2479,7 @@ $slick-opacity-not-active: 0.25;
     background: transparent;
     color: transparent;
     &:before {
-    opacity: $slick-opacity-on-hover;
+      opacity: $slick-opacity-on-hover;
     }
   }
   &.slick-disabled:before {
@@ -2497,7 +2496,7 @@ $slick-opacity-not-active: 0.25;
   -moz-osx-font-smoothing: grayscale;
 }
 .slick-prev {
-  left: -25px;
+  left: 8px;
   [dir="rtl"] & {
     left:  auto;
     right: -25px;
@@ -2972,7 +2971,7 @@ $slick-opacity-not-active: 0.25;
     }
 
     &.mfp-removing {
-        @include transition(all 0.3s ease-out);
+      @include transition(all 0.3s ease-out);
       .mfp-content {
         opacity: 0;
       }
@@ -3122,7 +3121,9 @@ button.mfp-arrow {
     margin-bottom: 0;
   }
 }
-
+.product-block{
+  margin-left:5px;
+}
 .grid-product__image-wrapper {
   position: relative;
   width: 100%;
@@ -3214,7 +3215,7 @@ button.mfp-arrow {
 
 .grid-product__price {
   @include accentFontStack;
-  font-size: em(14px);
+  font-size: 20px;
 }
 
 .grid-product__price-min {
@@ -3313,7 +3314,7 @@ button.mfp-arrow {
   height: 100%;
   width: 100%;
 
-  
+
   .collection-grid__item-overlay {
     position: relative;
     @include transition(all 0.8s ease);
@@ -3342,8 +3343,8 @@ button.mfp-arrow {
         opacity: 0.5;
       }
     }
-    
-    
+
+
   }
 }
 
@@ -3351,7 +3352,7 @@ button.mfp-arrow {
   display: block;
   width: 100%;
   height: 100%;
-  
+
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
   border-radius: 15px;
@@ -3732,18 +3733,121 @@ button.mfp-arrow {
     display: none;
   }
 }
+.template-product{
+  /* Related product */
+  .product_price{
+    display:block;
+    text-align:left;
+  }
 
-/* =========
-   Hiding the word 'Shopify' but not from screen readers.
-   IE8 does not support SVG, so in it we hide the logo and show the word.
-   To target all browsers except IE8, we use the class 'modern',
-   which needs to be added to the html element.
-   ========= */
-
-.shopify-name {
-  .modern & {
-    @include visuallyHidden;
+  .prodct_img{
+    margin-bottom:10px;
+    max-width: 320px;
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+    vertical-align:middle;
+    @media all and (max-width: 992px) {
+      max-width: 100%;
+      height: 220px;
+    }
+    @media all and (max-width: 600px) {
+      height: 145px;
+    }
+    img{
+      width:100%;
+      vertical-align:middle;
+      border-radius: 10px 10px 0 0 !important;
+    }
+  }
+  .slick-dots{
+    @media all and (max-width: 600px) {
+      display:none !important;
+    }
+  }
+  .title_product{
+    font-size: 16px;
+    text-align: left !important;
+    display: block;
+    padding-left:15px;
+    @media all and (max-width: 940px){
+      min-height: 56px;
+    }
+    @media all and (max-width: 768px){
+      min-height: auto
+    }
+    @media all and (max-width: 600px){
+      font-size: 13.5px;
+      padding-right:10px;
+      padding-left:10px;
+      min-height: auto;
+      white-space: nowrap;
+    }
+  }
+  .product_price{
+    padding-left:15px;
+    letter-spacing:normal;
+    @media all and (max-width: 480px){
+      padding-left:10px;
+    }
+  }
+  .img__link{
+    box-shadow:4px 4px 10px #aaaaaa3d , -4px -4px 10px #aaaaaa3d !important;
+    border-radius:10px !important;
+    padding-bottom:10px !important;
+  }
+  .eye{
+    padding-right: 15px;
+    float: right;
+    @media all and (max-width: 600px){
+      padding-left:10px;
+    }
+  }
+  .large-hide{
+    display:none;
+  }
+  @media all and (max-width: 590px) {
+    .medium-hide{
+      display:none;
+    }
+    .large-hide{
+      display:block;
+    }
+  }
+  #next{
+    background: #fff;
+    margin-top:30px;
+    max-width: 400px;
+    border: 4px solid #ebebeb;
+    width: 100%;
+    padding: 8px 20px;
+    border-radius: 15px;
+    position:relative;
+    span{
+      font-size: 18px;
+      font-weight: 900;
+    }
+    .img1{
+      float: left;
+      width: 24px;
+      margin: 10px;
+    }
+    .img2{
+      float: right;
+      width: 24px;
+      margin: 10px;
+    }
   }
 }
 
+.slick-next , .slick-prev{
+  display:none !important;
+}
+html{
+  padding-bottom:0px !important;
+}
 
+
+#ProductPrice1{
+padding-left:15px;
+}

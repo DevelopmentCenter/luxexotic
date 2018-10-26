@@ -118,79 +118,76 @@ Shopify.shopPopSettings = {"proof_enabled":false,"proof_show_add_to_cart":true,"
     {% section 'header' %}
 
     {% if template.name == "index" %}
-      {% section 'slideshow' %}
+    {% section 'slideshow' %}
     {% endif %}
 
     <main class="main-content" role="main">
       {% unless template.name == "index" or template == "collection.image" %}
-        <div class="wrapper">
-      {% endunless %}
+      <div class="wrapper">
+        {% endunless %}
         {{ content_for_layout }}
-      {% unless template.name == "index" or template == "collection.image" %}
-        </div>
+        {% unless template.name == "index" or template == "collection.image" %}
+      </div>
       {% endunless %}
     </main>
-    
-    
+
+
     {% section 'footer' %}
 
   </div>
 
   {% comment %}
-    Template-specific js
+  Template-specific js
   {% endcomment %}
   <script>
     {% if resetPassword %}
-      $(function(){timber.resetPasswordSuccess();});
+    $(function(){timber.resetPasswordSuccess();});
     {% endif %}
   </script>
 
   {% comment %}
-    Ajaxify your cart with this plugin.
-    Documentation:
-      - http://shopify.com/timber#ajax-cart
+  Ajaxify your cart with this plugin.
+  Documentation:
+  - http://shopify.com/timber#ajax-cart
   {% endcomment %}
   {% if settings.cart_type == 'drawer' %}
-    {% include 'ajax-cart-template' %}
+  {% include 'ajax-cart-template' %}
   {% endif %}
 
   <div id="SearchModal" class="mfp-hide">
     {% include 'search-bar', search_btn_style: 'btn', search_bar_location: 'search-bar--modal' %}
   </div>
 
-{% comment %} <script src="//www.codeblackbelt.com/js/modules/frequently-bought-together/main.min.js?shop=freeofferscom.myshopify.com"></script> {% endcomment %}
+  {% comment %} <script src="//www.codeblackbelt.com/js/modules/frequently-bought-together/main.min.js?shop=freeofferscom.myshopify.com"></script> {% endcomment %}
 
-{% comment %} <script>var om57c62a5576345,om57c62a5576345_poll=function(){var r=0;return function(n,l){clearInterval(r),r=setInterval(n,l)}}();!function(e,t,n){if(e.getElementById(n)){om57c62a5576345_poll(function(){if(window['om_loaded']){if(!om57c62a5576345){om57c62a5576345=new OptinMonsterApp();return om57c62a5576345.init({"s":"11958.57c62a5576345","staging":0,"dev":0,"beta":0});}}},25);return;}var d=false,o=e.createElement(t);o.id=n,o.src="//a.optnmstr.com/app/js/api.min.js",o.async=true,o.onload=o.onreadystatechange=function(){if(!d){if(!this.readyState||this.readyState==="loaded"||this.readyState==="complete"){try{d=om_loaded=true;om57c62a5576345=new OptinMonsterApp();om57c62a5576345.init({"s":"11958.57c62a5576345","staging":0,"dev":0,"beta":0});o.onload=o.onreadystatechange=null;}catch(t){}}}};(document.getElementsByTagName("head")[0]||document.documentElement).appendChild(o)}(document,"script","omapi-script");</script> {% endcomment %}
+  {% comment %} <script>var om57c62a5576345,om57c62a5576345_poll=function(){var r=0;return function(n,l){clearInterval(r),r=setInterval(n,l)}}();!function(e,t,n){if(e.getElementById(n)){om57c62a5576345_poll(function(){if(window['om_loaded']){if(!om57c62a5576345){om57c62a5576345=new OptinMonsterApp();return om57c62a5576345.init({"s":"11958.57c62a5576345","staging":0,"dev":0,"beta":0});}}},25);return;}var d=false,o=e.createElement(t);o.id=n,o.src="//a.optnmstr.com/app/js/api.min.js",o.async=true,o.onload=o.onreadystatechange=function(){if(!d){if(!this.readyState||this.readyState==="loaded"||this.readyState==="complete"){try{d=om_loaded=true;om57c62a5576345=new OptinMonsterApp();om57c62a5576345.init({"s":"11958.57c62a5576345","staging":0,"dev":0,"beta":0});o.onload=o.onreadystatechange=null;}catch(t){}}}};(document.getElementsByTagName("head")[0]||document.documentElement).appendChild(o)}(document,"script","omapi-script");</script> {% endcomment %}
 
+  <script type="text/javascript">
+    var _learnq=_learnq||[];_learnq.push(['account','tWYWUb']);(function(){var b=document.createElement('script');b.type='text/javascript';b.async=!0;b.src=('https:'==document.location.protocol?'https://':'http://')+'a.klaviyo.com/media/js/analytics/analytics.js';var a=document.getElementsByTagName('script')[0];a.parentNode.insertBefore(b,a)})()
+  </script>
 
-
-
-
-<script type="text/javascript">
-var _learnq=_learnq||[];_learnq.push(['account','tWYWUb']);(function(){var b=document.createElement('script');b.type='text/javascript';b.async=!0;b.src=('https:'==document.location.protocol?'https://':'http://')+'a.klaviyo.com/media/js/analytics/analytics.js';var a=document.getElementsByTagName('script')[0];a.parentNode.insertBefore(b,a)})()
-</script>
-
-	{{ shop.metafields.loox["global_html_body"] }}
+  {{ shop.metafields.loox["global_html_body"] }}
 
 
-<pixel-hook style="display:none;">
-     {% if template == 'collection' %}
-   <page-collection-id>
-    {% for collection in collections %}{{ collection.id  }},{% endfor %}
+  <pixel-hook style="display:none;">
+    {% if template == 'collection' %}
+    <page-collection-id>
+      {% for collection in collections %}{{ collection.id  }},{% endfor %}
     </page-collection-id>
     {% endif %}
-      {% if template == 'product' %}
-   <product-collection>{% for collection in product.collections %}{{ collection.id  }},{% endfor %}</product-collection>
-      {% endif %}
-        {% if template == 'cart' %}
-         <product-tags>{% for item in cart.items %}{% for tag in item.product.tags %}{{ tag }}, {% endfor %}{% endfor %}</product-tags>
-            <product-collection>{% for item in cart.items %}{% for collection in item.product.collections %}{{ collection.id }}, {% endfor %}{% endfor %}</product-collection>
-  
+    {% if template == 'product' %}
+    <product-collection>{% for collection in product.collections %}{{ collection.id  }},{% endfor %}</product-collection>
+    {% endif %}
+    {% if template == 'cart' %}
+    <product-tags>{% for item in cart.items %}{% for tag in item.product.tags %}{{ tag }}, {% endfor %}{% endfor %}</product-tags>
+    <product-collection>{% for item in cart.items %}{% for collection in item.product.collections %}{{ collection.id }}, {% endfor %}{% endfor %}</product-collection>
+
     {% endif %}
   </pixel-hook>
-{% include 'upsellapp-theme' %}<!-- BEEKETINGSCRIPT CODE START -->{% include 'bk-tracking' %}<!-- BEEKETINGSCRIPT CODE END -->
-
-
+  {% include 'upsellapp-theme' %}<!-- BEEKETINGSCRIPT CODE START -->{% include 'bk-tracking' %}<!-- BEEKETINGSCRIPT CODE END -->
+  
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" defer="defer"></script>
+  {{ 'Slick.js' | asset_url | script_tag }}
 
 </body>
 

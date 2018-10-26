@@ -2,7 +2,7 @@
 {% comment %}
 {% if collection == null or collection.handle == 'frontpage' or collection.handle == 'all' or collection.handle == 'featured' or collection.handle == 'new-arrivals' %}
 {% assign found_a_collection = false %}
-{% for c in product.collections  %}
+{% for c in product.collections %}
 {% if found_a_collection == false and c.handle != 'frontpage' and c.handle != 'all' and c.all_products_count > 1 %}
 {% assign found_a_collection = true %}
 {% assign collection = c %}
@@ -17,11 +17,12 @@
 {% endif %}
 {% endfor %}
 
+
 <div class="wrapper">
   <div class="grid">
     <h1 class="product-single__title text-center similar_product">Similar products you will love</h1>
     <div style="clear:both;"></div>
-    <div class="grid-uniform responsive overview">
+    <div class=" overview AjaxinateLoop">
       {% assign current_product = product %}
       {% assign current_product_found = false %}
       {% assign grid_item_width = 'medium--one-half large--one-third small--one-half' %}
@@ -30,13 +31,20 @@
       {% assign current_product_found = true %}
       {% else %}
       {% unless current_product_found == false and forloop.last %}
-      {% include 'product-grid-item1' %}
+      {% include 'product-grid-item' %}
 
       {% endunless %}
       {% endif %}
-      {% endfor %}
-    </div>
-    
 
+      {% endfor %}
+
+    </div>
+    <div class="text-center">
+      <button id="next">
+        <img class="img1" src="{{'down-arrow.png'|asset_url}}" >
+        <span>Show More</span>
+        <img class="img2" src="{{'down-arrow.png'|asset_url}}" >
+      </button>
+    </div>
   </div>
 </div>

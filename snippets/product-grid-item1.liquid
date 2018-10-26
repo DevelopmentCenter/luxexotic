@@ -15,7 +15,7 @@ Example
 {% endcomment %}
 
 {% unless grid_item_width %}
-{% assign grid_item_width = 'large--one-third medium--one-half' %}
+{% assign grid_item_width = 'large--one-third medium--one-half small--one-half' %}
 {% endunless %}
 
 {% unless image_size %}
@@ -32,8 +32,8 @@ Example
 {% assign sold_out = false %}
 {% endif %}
 
-<div class="grid__item grid-product product-list {{ grid_item_width }} {% if sold_out %} is-sold-out{% endif %}">
-  <div class="grid-product__wrapper ">
+<div class="grid__item grid-product {% if sold_out %} is-sold-out{% endif %}">
+  <div class="grid-product__wrapper product-block">
     <div class="grid-product__image-wrapper">
       <a class="grid-product__image-link img__link" href="{{ product.url | within: collection }}">
         <div class="prodct_img">
@@ -45,15 +45,15 @@ Example
         </div>
         {% elsif on_sale %}
 
-                <!--
-        <div class="grid-product__on-sale">
-        {% capture saved_amount %}{{ product.compare_at_price | minus: product.price | money_without_trailing_zeros }}{% endcapture %}
-        <p>{{ 'products.general.save_html' | t: saved_amount: saved_amount }}</p>
-        </div>
-        -->
+        <!--
+<div class="grid-product__on-sale">
+{% capture saved_amount %}{{ product.compare_at_price | minus: product.price | money_without_trailing_zeros }}{% endcapture %}
+<p>{{ 'products.general.save_html' | t: saved_amount: saved_amount }}</p>
+</div>
+-->
 
         {% endif %}
-        <span class="title_product"> {{ product.title| strip_html | truncatewords: 4}}</span>
+        <span class="title_product"> {{ product.title| strip_html | truncatewords: 3}}</span>
         <!--         <span class="grid-product__title">{{ product.title }}</span> -->
         <span class="grid-product__price-wrap">
           <!--           <span class="long-dash">—</span> -->
@@ -87,6 +87,7 @@ Example
 </div>
 </div>
 </div>
+
 
 
 
