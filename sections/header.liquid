@@ -32,7 +32,9 @@
     <header class="site-header" role="banner">
       <div class="wrapper">
         <div class="grid--full grid--table">
-          <div class="grid__item large--hide one-quarter">
+
+
+          <div class="grid__item large--hide one-quarter" style="display:none;">
             <div class="site-nav--mobile">
               <button type="button" class="icon-fallback-text site-nav__link js-drawer-open-left" aria-controls="NavDrawer">
                 <span class="icon icon-hamburger" aria-hidden="true"></span>
@@ -40,65 +42,27 @@
               </button>
             </div>
           </div>
+
+
           <div class="grid__item large--one-third medium-down--one-half">
-            {% comment %}
-              Use the uploaded logo from theme settings if enabled.
-              Site name gets precedence with H1 tag on homepage, div on other pages.
-            {% endcomment %}
-            {% if template.name == 'index' %}
-              <h1 class="site-header__logo large--left" itemscope itemtype="http://schema.org/Organization">
-            {% else %}
-              <div class="h1 site-header__logo large--left" itemscope itemtype="http://schema.org/Organization">
-            {% endif %}
-              {% if section.settings.logo %}
-                {% comment %}
-                  .logo--has-inverted is only applied to the default logo if the inverted logo exists. That way it'll only be hidden on the slider when it has a backup.
-                {% endcomment %}
-                <a href="/" itemprop="url" class="site-header__logo-link{% if section.settings.logo-inverted %} logo--has-inverted{% endif %}">
-                  {% if section.settings.logo_max_width != empty %}
-                    {% capture image_size %}{{ section.settings.logo_max_width | escape }}x{% endcapture %}
-                  {% else %}
-                    {% assign image_size = "180x" %}
-                  {% endif %}
-                   <img src="{{ section.settings.logo | img_url: image_size }}"
-                   srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
-                   alt="{{ section.settings.logo.alt | default: shop.name }}"
-                   itemprop="logo">
-                </a>
-                {% if section.settings.logo-inverted %}
-                  <a href="/" itemprop="url" class="logo--inverted">
-                    <img src="{{ section.settings.logo-inverted | img_url: image_size }}"
-                    srcset="{{ section.settings.logo-inverted | img_url: image_size }} 1x, {{ section.settings.logo-inverted | img_url: image_size, scale: 2 }} 2x"
-                    alt="{{ section.settings.logo-inverted.alt | default: shop.name }}"
-                    itemprop="logo">
-                  </a>
-                {% endif %}
-              {% else %}
-                <a href="/" itemprop="url">{{ shop.name }}</a>
-              {% endif %}
-            {% if template.name == 'index' %}
-              </h1>
-            {% else %}
-              </div>
-            {% endif %}
-          </div>
-          <div class="grid__item large--two-thirds large--text-right medium-down--hide">
+            
+
             {% comment %}
               List out your main-menu linklist (default)
 
               More info on linklists:
                 - http://docs.shopify.com/themes/liquid-variables/linklists
             {% endcomment %}
-            
-            <!--Phone-->
-            <div class="phone-number">
-            <span class="phone-icon"><icon style="font-size:14px;" class="glyphicon glyphicon-earphone"></icon></span>   
-            <a class="phonehref" href="tel:{{ settings.store_support_phone }}"> <span class="phone-text">&nbsp;{{ settings.store_support_phone }}</span></a><br>
-            </div>
-            <!--Phone ends-->
-            
-            <!-- begin site-nav -->
-            <ul class="site-nav" id="AccessibleNav">
+
+	       <!-- begin site-nav -->
+            <ul class="site-nav site-nav--compress" id="AccessibleNav">
+              
+              <div class="back-button">
+              <a href="javascript:history.back()"><i class="fa fa-angle-left"></i>
+              </a>
+              </div>  
+              
+              
               {% if section.settings.search == "box" %}
               <li class="site-nav__item site-nav--search__bar medium-down--hide ">
                 {% include 'search-bar', search_btn_style: 'btn', search_bar_location: 'search-bar--header' %}
@@ -157,12 +121,79 @@
                 </li>
               {% endif %}
 
+            </ul>
+            <!-- //site-nav -->
+          </div>
+          
+          
+          
+          
+          <div class="grid__item large--one-third medium-down--one-half logo-section">
+           {% comment %}
+              Use the uploaded logo from theme settings if enabled.
+              Site name gets precedence with H1 tag on homepage, div on other pages.
+            {% endcomment %}
+            {% if template.name == 'index' %}
+              <h1 class="site-header__logo large--center" itemscope itemtype="http://schema.org/Organization">
+            {% else %}
+              <div class="h1 site-header__logo large--center" itemscope itemtype="http://schema.org/Organization">
+            {% endif %}
+              {% if section.settings.logo %}
+                {% comment %}
+                  .logo--has-inverted is only applied to the default logo if the inverted logo exists. That way it'll only be hidden on the slider when it has a backup.
+                {% endcomment %}
+                <a href="/" itemprop="url" class="site-header__logo-link{% if section.settings.logo-inverted %} logo--has-inverted{% endif %}">
+                  {% if section.settings.logo_max_width != empty %}
+                    {% capture image_size %}{{ section.settings.logo_max_width | escape }}x{% endcapture %}
+                  {% else %}
+                    {% assign image_size = "180x" %}
+                  {% endif %}
+                   <img src="{{ section.settings.logo | img_url: image_size }}"
+                   srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+                   alt="{{ section.settings.logo.alt | default: shop.name }}"
+                   itemprop="logo">
+                </a>
+                {% if section.settings.logo-inverted %}
+                  <a href="/" itemprop="url" class="logo--inverted">
+                    <img src="{{ section.settings.logo-inverted | img_url: image_size }}"
+                    srcset="{{ section.settings.logo-inverted | img_url: image_size }} 1x, {{ section.settings.logo-inverted | img_url: image_size, scale: 2 }} 2x"
+                    alt="{{ section.settings.logo-inverted.alt | default: shop.name }}"
+                    itemprop="logo">
+                  </a>
+                {% endif %}
+              {% else %}
+                <a href="/" itemprop="url">{{ shop.name }}</a>
+              {% endif %}
+            {% if template.name == 'index' %}
+              </h1>
+            {% else %}
+              </div>
+            {% endif %} 
+          </div>
+          
+          
+          
+          
+          <div class="grid__item large--one-third medium-down--one-half">
+            <div class="site-nav--mobile text-right">
+              
+              
+            <div class="phone-number-mobile phone-icons">
+				<span class="phone-icon">
+  					<a class="phonehref" href="tel:{{ settings.store_support_phone }}">
+                      <icon class="glyphicon glyphicon-earphone"></icon>
+                    </a> 
+                </span> 
+			</div>
+              
+         
               {% if section.settings.search == 'page' or section.settings.search == 'modal' %}
                 {% assign search_modal = true %}
                 {% if section.settings.search == 'page' %}
                   {% assign search_modal = false %}
                 {% endif %}
-                <li class="site-nav__item">
+
+                <li class="site-nav__item search-bar">
                   <a href="/search" class="site-nav__link site-nav__link--icon{% if search_modal %} js-toggle-search-modal{% endif %}" data-mfp-src="#SearchModal">
                     <span class="icon-fallback-text">
                       <span class="icon icon-search" aria-hidden="true"></span>
@@ -172,21 +203,7 @@
                 </li>
               {% endif %}
 
-              <li class="site-nav__item">
-                <a href="/cart" class="site-nav__link site-nav__link--icon cart-link js-drawer-open-right" aria-controls="CartDrawer">
-                  <span class="icon-fallback-text">
-                    <span class="icon icon-cart" aria-hidden="true"></span>
-                    <span class="fallback-text">{{ 'layout.cart.title' | t }}</span>
-                  </span>
-                  <span class="cart-link__bubble{% if cart.item_count > 0 %} cart-link__bubble--visible{% endif %}"></span>
-                </a>
-              </li>
-
-            </ul>
-            <!-- //site-nav -->
-          </div>
-          <div class="grid__item large--hide one-quarter">
-            <div class="site-nav--mobile text-right">
+              
               <a href="/cart" class="site-nav__link cart-link js-drawer-open-right" aria-controls="CartDrawer">
                 <span class="icon-fallback-text">
                   <span class="icon icon-cart" aria-hidden="true"></span>
@@ -196,8 +213,11 @@
               </a>
             </div>
           </div>
+
+          
         </div>
 
+        
       </div>
     </header>
   </div>

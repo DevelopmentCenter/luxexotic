@@ -42,7 +42,8 @@
   {% comment pluginspeed replaced-css DON'T CHANGE %}{{ 'timber.scss.css' | asset_url | stylesheet_tag }}{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'timber.scss.css', tag: 'stylesheet', liquid_tag: true -%}
   {% comment pluginspeed replaced-css DON'T CHANGE %}{{ 'theme.scss.css' | asset_url | stylesheet_tag }}{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'theme.scss.css', tag: 'stylesheet', liquid_tag: true -%}
   {% comment pluginspeed replaced-css DON'T CHANGE %}{{ 'cusstom.css' | asset_url | stylesheet_tag }}{% endcomment %}{%- include 'pluginspeed-minify-asset', asset: 'cusstom.css', tag: 'stylesheet', liquid_tag: true -%}
-  {% include 'google-fonts' %}
+  {{ 'flexslider.css' | asset_url | stylesheet_tag }}
+{% include 'google-fonts' %}
 
   <!-- Sections ================================================== -->
   <script src="https://use.fontawesome.com/7ed9d54606.js"></script>
@@ -130,7 +131,6 @@ Shopify.shopPopSettings = {"proof_enabled":false,"proof_show_add_to_cart":true,"
       </div>
       {% endunless %}
     </main>
-
     {% section 'footer' %}
 
   </div>
@@ -188,6 +188,7 @@ Shopify.shopPopSettings = {"proof_enabled":false,"proof_show_add_to_cart":true,"
   <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" defer="defer"></script>
   {{ 'Slick.js' | asset_url | script_tag }}
 
+  {{ 'jquery.flexslider.js' | asset_url | script_tag }}  
 </body>
 
 
