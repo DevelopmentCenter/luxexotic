@@ -6,13 +6,18 @@
   we will wrap them in a sup (superscript) element.
 {% endcomment %}
 
+{% comment %}
 {% unless shop.money_format contains 'money' or shop.money_format contains '.' %}
     {% if shop.money_format contains '{{amount}}' or shop.money_format contains '{{ amount }}' %}
+{% endcomment %}
       {% capture formatted_price %}<sup>{{ formatted_price | replace: '.','<sup>' | replace: '$','$</sup>' }}</sup>{% endcapture %}
     {% elsif shop.money_format contains '{{amount_with_comma_separator}}' or shop.money_format contains '{{ amount_with_comma_separator }}' %}
       {% capture formatted_price %}{{ formatted_price | replace: ',','<sup>' }}</sup>{% endcapture %}
+   	
+{% comment %}
     {% endif %}
 {% endunless %}
+{% endcomment %}
 
 {{ formatted_price }}
 <span class="visually-hidden">{{ price | money }}</span>
